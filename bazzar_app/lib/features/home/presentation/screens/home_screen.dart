@@ -1,0 +1,107 @@
+import 'package:bazzar_app/features/home/data/models/author_model.dart';
+import 'package:bazzar_app/features/home/data/models/book_model.dart';
+import 'package:bazzar_app/features/home/data/models/vendor_model.dart';
+import 'package:bazzar_app/features/home/presentation/widgets/bottom_navigation_Bar_widget.dart';
+import 'package:bazzar_app/features/home/presentation/widgets/home_section_widget.dart';
+import 'package:bazzar_app/features/home/presentation/widgets/type_banner_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                "assets/Icon/Search.svg",
+                width: 20,
+                height: 20,
+              ),
+            ),
+            Text(
+              'Home',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+            ),
+            IconButton(onPressed: () {}, icon: Icon(Icons.notifications_none)),
+          ],
+        ),
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TypeBannerWidget(title: "Top of Week"),
+              SizedBox(height: 5),
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: dummyBooks.length,
+                  itemBuilder: (context, index) {
+                    return HomeSectionWidget(
+                      image: dummyBooks[index].image,
+                      description: dummyBooks[index].title,
+                      value: dummyBooks[index].price,
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 10),
+              TypeBannerWidget(title: "Best Vendors"),
+              SizedBox(height: 5),
+              SizedBox(
+                height: 125,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: dummyVendors.length,
+                  itemBuilder: (context, index) {
+                    return HomeSectionWidget(
+                      image: dummyVendors[index].logo,
+                      isVendor: true,
+                    );
+                  },
+                ),
+              ),
+
+              TypeBannerWidget(title: "Best Authors"),
+              SizedBox(height: 5),
+
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: dummyAuthors.length,
+                  itemBuilder: (context, index) {
+                    return HomeSectionWidget(
+                      image: dummyAuthors[index].image,
+                      description: dummyAuthors[index].name,
+                      role: dummyAuthors[index].role,
+                      isCircle: true,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBarWidget(),
+    );
+  }
+}

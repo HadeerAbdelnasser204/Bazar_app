@@ -1,0 +1,92 @@
+class BookModel {
+  final String title;
+  final String image;
+  final double price;
+  final double rate;
+  final String vendor;
+  final String description;
+
+  BookModel({
+    required this.title,
+    required this.image,
+    required this.price,
+    required this.rate,
+    required this.vendor,
+    required this.description,
+  });
+}
+
+List<BookModel> dummyBooks = [
+  BookModel(
+    title: "The Kite Runner",
+    image: "assets/images/App Logo.png",
+    price: 14.99,
+    rate: 4.0,
+    vendor: "Gooday",
+    description: "A powerful story of friendship, betrayal, and redemption.",
+  ),
+  BookModel(
+    title: "The Subtle Art",
+    image: "assets/images/App Logo.png",
+    price: 20.99,
+    rate: 4.5,
+    vendor: "Wattpad",
+    description: "A counterintuitive approach to living a good life.",
+  ),
+  BookModel(
+    title: "The Art of War",
+    image: "assets/images/App Logo.png",
+    price: 14.99,
+    rate: 4.3,
+    vendor: "Crane & Co",
+    description: "Ancient Chinese military strategy and philosophy book.",
+  ),
+  BookModel(
+    title: "Atomic Habits",
+    image: "assets/images/App Logo.png",
+    price: 18.50,
+    rate: 4.8,
+    vendor: "Kuromi",
+    description: "Tiny changes that deliver remarkable results.",
+  ),
+  BookModel(
+    title: "Rich Dad Poor Dad",
+    image: "assets/images/App Logo.png",
+    price: 17.99,
+    rate: 4.7,
+    vendor: "Haymarket",
+    description: "What the rich teach their kids about money.",
+  ),
+  BookModel(
+    title: "Atomic Habits",
+    image: "assets/images/App Logo.png",
+    price: 18.50,
+    rate: 4.8,
+    vendor: "Kuromi",
+    description: "Tiny changes that deliver remarkable results.",
+  ),
+  BookModel(
+    title: "Rich Dad Poor Dad",
+    image: "assets/images/App Logo.png",
+    price: 17.99,
+    rate: 4.7,
+    vendor: "Haymarket",
+    description: "What the rich teach their kids about money.",
+  ),
+  BookModel(
+    title: "Atomic Habits",
+    image: "assets/images/App Logo.png",
+    price: 18.50,
+    rate: 4.8,
+    vendor: "Kuromi",
+    description: "Tiny changes that deliver remarkable results.",
+  ),
+  BookModel(
+    title: "Rich Dad Poor Dad",
+    image: "assets/images/App Logo.png",
+    price: 17.99,
+    rate: 4.7,
+    vendor: "Haymarket",
+    description: "What the rich teach their kids about money.",
+  ),
+];
