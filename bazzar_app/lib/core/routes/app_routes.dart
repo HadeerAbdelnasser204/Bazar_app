@@ -1,3 +1,4 @@
+import 'package:bazzar_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
 import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -26,10 +27,10 @@ final GoRouter router = GoRouter(
       path: AppRoutes.onboardingScreen,
       builder: (_, __) => const OnboardingScreen(),
     ),
-    // GoRoute(
-    //   path: AppRoutes.loginScreen,
-    //   builder: (context, state) => const LoginScreen(),
-    // ),
+    GoRoute(
+      path: AppRoutes.loginScreen,
+      builder: (context, state) => const LoginScreen(),
+    ),
     // GoRoute(
     //   path: AppRoutes.signUpScreen,
     //   builder: (context, state) => const SignUpScreen(),
