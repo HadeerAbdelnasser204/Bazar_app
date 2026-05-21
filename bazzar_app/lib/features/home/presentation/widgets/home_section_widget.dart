@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeSectionWidget extends StatelessWidget {
-  const HomeSectionWidget({
+  HomeSectionWidget({
     super.key,
     required this.image,
     this.description,
@@ -9,6 +9,7 @@ class HomeSectionWidget extends StatelessWidget {
     this.role,
     this.isCircle = false,
     this.isVendor = false,
+    this.size = 13,
   });
 
   final String image;
@@ -17,6 +18,7 @@ class HomeSectionWidget extends StatelessWidget {
   final String? role;
   final bool isVendor;
   final bool isCircle;
+  double size;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class HomeSectionWidget extends StatelessWidget {
               width: 110,
               height: 110,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: const Color.fromARGB(255, 238, 237, 237),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -61,7 +63,7 @@ class HomeSectionWidget extends StatelessWidget {
 
             Text(
               description!,
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: size, fontWeight: FontWeight.bold),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

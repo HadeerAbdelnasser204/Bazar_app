@@ -1,6 +1,6 @@
-import 'package:bazzar_app/features/home/data/models/author_model.dart';
-import 'package:bazzar_app/features/home/data/models/book_model.dart';
-import 'package:bazzar_app/features/home/data/models/vendor_model.dart';
+import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
+import 'package:bazzar_app/features/Books/data/models/book_model.dart';
+import 'package:bazzar_app/features/Vendors/data/models/vendor_model.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/bottom_navigation_Bar_widget.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/home_section_widget.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/type_banner_widget.dart';
@@ -40,7 +40,6 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TypeBannerWidget(title: "Top of Week"),
@@ -61,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              TypeBannerWidget(title: "Best Vendors"),
+              TypeBannerWidget(title: "Best Vendors", isVendor: true),
               SizedBox(height: 5),
               SizedBox(
                 height: 125,
@@ -78,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              TypeBannerWidget(title: "Best Authors"),
+              TypeBannerWidget(title: "Best Authors", isCircle: true),
               SizedBox(height: 5),
 
               SizedBox(
