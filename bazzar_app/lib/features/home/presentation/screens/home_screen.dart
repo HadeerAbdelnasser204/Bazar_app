@@ -1,5 +1,6 @@
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
+import 'package:bazzar_app/features/Books/presentation/widgets/book_widget.dart';
 import 'package:bazzar_app/features/Vendors/data/models/vendor_model.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/bottom_navigation_Bar_widget.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/home_section_widget.dart';
@@ -45,17 +46,13 @@ class HomeScreen extends StatelessWidget {
               TypeBannerWidget(title: "Top of Week"),
               SizedBox(height: 5),
               SizedBox(
-                height: 200,
+                height: 230,
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: dummyBooks.length,
                   itemBuilder: (context, index) {
-                    return HomeSectionWidget(
-                      image: dummyBooks[index].image,
-                      description: dummyBooks[index].title,
-                      value: dummyBooks[index].price,
-                    );
+                    return BookWidget(book: dummyBooks[index]);
                   },
                 ),
               ),
