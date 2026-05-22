@@ -1,3 +1,5 @@
+import 'package:bazzar_app/core/utils/app_assets.dart';
+
 class BookModel {
   final String title;
   final String image;
@@ -19,7 +21,7 @@ class BookModel {
 List<BookModel> dummyBooks = [
   BookModel(
     title: "The Kite Runner",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 14.99,
     rate: 4.0,
     vendor: "Gooday",
@@ -27,7 +29,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "The Subtle Art",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 20.99,
     rate: 4.5,
     vendor: "Wattpad",
@@ -35,7 +37,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "The Art of War",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 14.99,
     rate: 4.3,
     vendor: "Crane & Co",
@@ -43,7 +45,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "Atomic Habits",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 18.50,
     rate: 4.8,
     vendor: "Kuromi",
@@ -51,7 +53,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "Rich Dad Poor Dad",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 17.99,
     rate: 4.7,
     vendor: "Haymarket",
@@ -59,7 +61,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "Atomic Habits",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 18.50,
     rate: 4.8,
     vendor: "Kuromi",
@@ -67,7 +69,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "Rich Dad Poor Dad",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 17.99,
     rate: 4.7,
     vendor: "Haymarket",
@@ -75,7 +77,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "Atomic Habits",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 18.50,
     rate: 4.8,
     vendor: "Kuromi",
@@ -83,7 +85,7 @@ List<BookModel> dummyBooks = [
   ),
   BookModel(
     title: "Rich Dad Poor Dad",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     price: 17.99,
     rate: 4.7,
     vendor: "Haymarket",

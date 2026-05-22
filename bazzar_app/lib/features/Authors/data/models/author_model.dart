@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 
 class AuthorModel {
@@ -22,14 +23,14 @@ class AuthorModel {
 List<AuthorModel> dummyAuthors = [
   AuthorModel(
     name: "John Freeman",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     role: "Writer",
     description: "John Freeman is a writer and editor based in New York.",
     rate: 4.0,
     products: [
       BookModel(
         title: "The Tyranny of Email",
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
         price: 19.99,
         rate: 4.5,
         vendor: "Penguin",
@@ -38,7 +39,7 @@ List<AuthorModel> dummyAuthors = [
 
       BookModel(
         title: "Dictionary of the Undoing",
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
         price: 24.99,
         rate: 4.2,
         vendor: "HarperCollins",
@@ -47,7 +48,7 @@ List<AuthorModel> dummyAuthors = [
 
       BookModel(
         title: "The Tyranny of Email",
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
         price: 19.99,
         rate: 4.0,
         vendor: "Penguin",
@@ -56,7 +57,7 @@ List<AuthorModel> dummyAuthors = [
 
       BookModel(
         title: "Dictionary of the Undoing",
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
         price: 24.99,
         rate: 3.0,
         vendor: "HarperCollins",
@@ -67,7 +68,7 @@ List<AuthorModel> dummyAuthors = [
 
   AuthorModel(
     name: "Tess Gunty",
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
     role: "Novelist",
     description:
         "Tess Gunty is a novelist and short story writer based in California.",
@@ -75,7 +76,7 @@ List<AuthorModel> dummyAuthors = [
     products: [
       BookModel(
         title: "The Rabbit Hutch",
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
         price: 29.99,
         rate: 3.8,
         vendor: "Simon & Schuster",
@@ -85,7 +86,7 @@ List<AuthorModel> dummyAuthors = [
       BookModel(
         title: "After the Flood",
 
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
 
         price: 21.50,
 
@@ -101,7 +102,7 @@ List<AuthorModel> dummyAuthors = [
   AuthorModel(
     name: "Richard Powers",
 
-    image: "assets/images/app_logo.png",
+    image: AppAssets.logo,
 
     role: "Writer",
 
@@ -113,7 +114,7 @@ List<AuthorModel> dummyAuthors = [
       BookModel(
         title: "The Overstory",
 
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
 
         price: 26.99,
 
@@ -127,7 +128,7 @@ List<AuthorModel> dummyAuthors = [
       BookModel(
         title: "Bewilderment",
 
-        image: "assets/images/app_logo.png",
+        image: AppAssets.logo,
 
         price: 23.99,
 
