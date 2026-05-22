@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeSectionWidget extends StatelessWidget {
@@ -48,21 +49,10 @@ class HomeSectionWidget extends StatelessWidget {
                   image: AssetImage(image),
                 ),
               ),
-            )
-          else
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image(
-                width: 110,
-                height: 150,
-                fit: BoxFit.cover,
-                image: AssetImage(image),
-              ),
             ),
 
           if (description != null) ...[
             const SizedBox(height: 5),
-
             Text(
               description!,
               style: TextStyle(fontSize: size, fontWeight: FontWeight.bold),
@@ -73,14 +63,11 @@ class HomeSectionWidget extends StatelessWidget {
 
           if (value != null || role != null) ...[
             const SizedBox(height: 5),
-
             Text(
               value != null ? '\$${value!.toStringAsFixed(2)}' : role ?? '',
               style: TextStyle(
                 fontSize: 12,
-                color: value != null
-                    ? const Color(0xFF54408C)
-                    : Colors.grey[400],
+                color: value != null ? AppColors.primary500 : AppColors.grey400,
                 fontWeight: FontWeight.bold,
               ),
             ),

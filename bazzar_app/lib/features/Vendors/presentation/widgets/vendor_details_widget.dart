@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -28,7 +29,7 @@ class VendorDetailsWidget extends StatelessWidget {
             height: 110,
 
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: AppColors.grey200,
 
               borderRadius: BorderRadius.circular(10),
             ),
@@ -61,14 +62,14 @@ class VendorDetailsWidget extends StatelessWidget {
                   "assets/Icon/Star.svg",
                   width: 17,
                   height: 17,
-                  color: const Color(0xFFFFC107),
+                  color: AppColors.yellow,
                 );
               } else {
                 return SvgPicture.asset(
                   "assets/Icon/Star.svg",
                   width: 17,
                   height: 17,
-                  color: const Color.fromARGB(213, 0, 0, 0),
+                  color: AppColors.grey900,
                 );
               }
             }),

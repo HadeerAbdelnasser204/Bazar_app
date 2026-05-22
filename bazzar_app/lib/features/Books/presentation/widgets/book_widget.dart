@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 import 'package:bazzar_app/features/Books/presentation/screens/book_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +29,20 @@ class BookWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image(
-                  width: 125,
-                  height: 150,
-                  fit: BoxFit.cover,
-                  image: AssetImage(book.image),
+              Container(
+                width: 125,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: AppColors.grey200,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Image.asset(book.image, fit: BoxFit.contain),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -50,9 +58,9 @@ class BookWidget extends StatelessWidget {
               const SizedBox(height: 5),
               Text(
                 '\$${book.price.toStringAsFixed(2)}',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
-                  color: Color(0xFF54408C),
+                  color: AppColors.primary500,
                   fontWeight: FontWeight.bold,
                 ),
               ),

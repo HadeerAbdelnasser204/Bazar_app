@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
@@ -15,9 +16,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

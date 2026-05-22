@@ -1,3 +1,5 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,7 +17,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: AppColors.grey100,
       currentIndex: currentIndex,
 
       onTap: (index) {
@@ -26,8 +28,8 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
 
       type: BottomNavigationBarType.fixed,
 
-      selectedItemColor: const Color(0xFF54408C),
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: AppColors.primary500,
+      unselectedItemColor: AppColors.grey500,
 
       selectedLabelStyle: const TextStyle(
         fontSize: 12,
@@ -42,10 +44,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       items: [
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/Icon/Home-Fill.svg",
+            AppAssets.homeIcon,
 
             colorFilter: ColorFilter.mode(
-              currentIndex == 0 ? const Color(0xFF54408C) : Colors.grey,
+              currentIndex == 0 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -54,10 +56,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
 
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/Icon/Menu-Fill.svg",
+            AppAssets.menuIcon,
 
             colorFilter: ColorFilter.mode(
-              currentIndex == 1 ? const Color(0xFF54408C) : Colors.grey,
+              currentIndex == 1 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -66,10 +68,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
 
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/Icon/Cart-Fill.svg",
-
+            AppAssets.cartIcon,
             colorFilter: ColorFilter.mode(
-              currentIndex == 2 ? const Color(0xFF54408C) : Colors.grey,
+              currentIndex == 2 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -78,10 +79,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
 
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/Icon/Profile-Fill.svg",
+            AppAssets.profileIcon,
 
             colorFilter: ColorFilter.mode(
-              currentIndex == 3 ? const Color(0xFF54408C) : Colors.grey,
+              currentIndex == 3 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),

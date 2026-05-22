@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PageDescriptionWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class PageDescriptionWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.grey[400],
+              color: AppColors.grey400,
             ),
           ),
           Text(
@@ -29,7 +30,7 @@ class PageDescriptionWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF54408C),
+              color: AppColors.primary500,
             ),
           ),
         ],

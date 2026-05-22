@@ -29,13 +29,22 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(17),
-                  child: Image(
-                    width: 200,
-                    height: 300,
-                    fit: BoxFit.cover,
-                    image: AssetImage(widget.book.image),
+                child: Container(
+                  width: 220,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    color: AppColors.grey200,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Image.asset(
+                        widget.book.image,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
                 ),
               ),

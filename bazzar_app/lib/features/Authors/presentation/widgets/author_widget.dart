@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,6 @@ class AuthorWidget extends StatelessWidget {
                 children: [
                   Text(
                     author.name,
-
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -42,7 +42,10 @@ class AuthorWidget extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     author.description,
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.grey500,
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

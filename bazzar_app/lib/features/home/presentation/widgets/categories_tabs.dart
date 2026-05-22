@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesTabs extends StatefulWidget {
@@ -47,7 +48,9 @@ class _CategoriesTabsState extends State<CategoriesTabs> {
                             ? FontWeight.bold
                             : FontWeight.normal,
 
-                        color: isSelected ? Colors.black : Colors.grey,
+                        color: isSelected
+                            ? AppColors.grey900
+                            : AppColors.grey500,
                       ),
                     ),
 
@@ -59,7 +62,7 @@ class _CategoriesTabsState extends State<CategoriesTabs> {
                       width: isSelected ? 30 : 0,
 
                       decoration: BoxDecoration(
-                        color: const Color(0xFF54408C),
+                        color: AppColors.primary500,
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),

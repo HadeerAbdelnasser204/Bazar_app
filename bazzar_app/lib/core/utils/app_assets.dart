@@ -1,6 +1,10 @@
 class AppAssets {
   static const String logo = "assets/images/app_logo.png";
-  static const searchIcon = "assets/Icon/Search.svg";
-  static const starIcon = "assets/Icon/Star.svg";
+  static const String searchIcon = "assets/Icon/Search.svg";
+  static const String starIcon = "assets/Icon/Star.svg";
   static const String loveIcon = "assets/Icon/Love-Fill.svg";
+  static const String cartIcon = "assets/Icon/Cart-Fill.svg";
+  static const String profileIcon = "assets/Icon/Profile-Fill.svg";
+  static const String homeIcon = "assets/Icon/Home-Fill.svg";
+  static const String menuIcon = "assets/Icon/Menu-Fill.svg";
 }

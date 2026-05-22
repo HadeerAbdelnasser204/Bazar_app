@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
@@ -49,7 +50,7 @@ class AuthorDetails extends StatelessWidget {
                               AppAssets.starIcon,
                               width: iconSize,
                               height: iconSize,
-                              color: const Color(0xFFFFC107),
+                              color: AppColors.yellow,
                             );
                           } else {
                             return SvgPicture.asset(
@@ -138,7 +139,7 @@ class AuthorDetails extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF54408C),
+                        color: AppColors.primary500,
                       ),
                     ),
                   ],

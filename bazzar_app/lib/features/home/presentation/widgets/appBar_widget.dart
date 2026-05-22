@@ -13,19 +13,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         children: [
           const Spacer(),
-
           Text(
             title,
-
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-
           const Spacer(),
-
           if (iconPath != null)
             IconButton(
               onPressed: () {},
-
               icon: SvgPicture.asset(iconPath!, width: 24, height: 24),
             ),
         ],
