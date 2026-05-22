@@ -107,7 +107,7 @@ class AuthorDetails extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
-                childAspectRatio: 0.75,
+                childAspectRatio: 0.71,
               ),
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
@@ -115,13 +115,23 @@ class AuthorDetails extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      child: Image.asset(
-                        author.products[index].image,
-                        height: 170,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                    Container(
+                      width: 180,
+                      height: 180,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey200,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Image.asset(
+                            author.products[index].image,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                       ),
                     ),
                     Padding(
