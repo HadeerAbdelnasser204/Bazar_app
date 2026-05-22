@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/book_widget.dart';
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             IconButton(
               onPressed: () {},
               icon: SvgPicture.asset(
-                "assets/Icon/Search.svg",
+                AppAssets.searchIcon,
                 width: 20,
                 height: 20,
               ),

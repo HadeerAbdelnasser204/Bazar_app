@@ -22,14 +22,14 @@ class AuthorModel {
 List<AuthorModel> dummyAuthors = [
   AuthorModel(
     name: "John Freeman",
-    image: "assets/images/App Logo.png",
+    image: "assets/images/app_logo.png",
     role: "Writer",
     description: "John Freeman is a writer and editor based in New York.",
     rate: 4.0,
     products: [
       BookModel(
         title: "The Tyranny of Email",
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
         price: 19.99,
         rate: 4.5,
         vendor: "Penguin",
@@ -38,7 +38,7 @@ List<AuthorModel> dummyAuthors = [
 
       BookModel(
         title: "Dictionary of the Undoing",
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
         price: 24.99,
         rate: 4.2,
         vendor: "HarperCollins",
@@ -47,7 +47,7 @@ List<AuthorModel> dummyAuthors = [
 
       BookModel(
         title: "The Tyranny of Email",
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
         price: 19.99,
         rate: 4.0,
         vendor: "Penguin",
@@ -56,7 +56,7 @@ List<AuthorModel> dummyAuthors = [
 
       BookModel(
         title: "Dictionary of the Undoing",
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
         price: 24.99,
         rate: 3.0,
         vendor: "HarperCollins",
@@ -67,7 +67,7 @@ List<AuthorModel> dummyAuthors = [
 
   AuthorModel(
     name: "Tess Gunty",
-    image: "assets/images/App Logo.png",
+    image: "assets/images/app_logo.png",
     role: "Novelist",
     description:
         "Tess Gunty is a novelist and short story writer based in California.",
@@ -75,7 +75,7 @@ List<AuthorModel> dummyAuthors = [
     products: [
       BookModel(
         title: "The Rabbit Hutch",
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
         price: 29.99,
         rate: 3.8,
         vendor: "Simon & Schuster",
@@ -85,7 +85,7 @@ List<AuthorModel> dummyAuthors = [
       BookModel(
         title: "After the Flood",
 
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
 
         price: 21.50,
 
@@ -101,7 +101,7 @@ List<AuthorModel> dummyAuthors = [
   AuthorModel(
     name: "Richard Powers",
 
-    image: "assets/images/App Logo.png",
+    image: "assets/images/app_logo.png",
 
     role: "Writer",
 
@@ -113,7 +113,7 @@ List<AuthorModel> dummyAuthors = [
       BookModel(
         title: "The Overstory",
 
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
 
         price: 26.99,
 
@@ -127,7 +127,7 @@ List<AuthorModel> dummyAuthors = [
       BookModel(
         title: "Bewilderment",
 
-        image: "assets/images/App Logo.png",
+        image: "assets/images/app_logo.png",
 
         price: 23.99,
 

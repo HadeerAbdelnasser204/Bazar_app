@@ -1,5 +1,6 @@
-import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
+import 'package:bazzar_app/core/routes/app_routes.dart' as AppRoutes;
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: AppRoutes.router,
+        );
+      },
     );
   }
 }

@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:bazzar_app/core/theme/app_colors.dart';
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,7 +21,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 20),
@@ -48,7 +50,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                   IconButton(
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      "assets/Icon/Love-Fill.svg",
+                      AppAssets.loveIcon,
                       width: 20,
                       height: 20,
                     ),
@@ -59,7 +61,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                 widget.book.vendor,
                 style: TextStyle(
                   fontSize: 20,
-                  color: const Color.fromARGB(255, 255, 123, 0),
+                  color: AppColors.orange,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -80,14 +82,14 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                   ...List.generate(5, (index) {
                     if (index < widget.book.rate.floor()) {
                       return SvgPicture.asset(
-                        "assets/Icon/Star.svg",
+                        AppAssets.starIcon,
                         width: iconSize,
                         height: iconSize,
-                        color: const Color(0xFFFFC107),
+                        color: AppColors.yellow,
                       );
                     } else {
                       return SvgPicture.asset(
-                        "assets/Icon/Star.svg",
+                        AppAssets.starIcon,
                         width: iconSize,
                         height: iconSize,
                         color: const Color.fromARGB(213, 0, 0, 0),
@@ -111,7 +113,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
 
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.grey[300],
+                      color: AppColors.grey200,
                     ),
                     child: IconButton(
                       padding: EdgeInsets.zero,
@@ -138,9 +140,9 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                   Container(
                     width: 35,
                     height: 35,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xFF54408C),
+                      color: AppColors.primary500,
                     ),
 
                     child: IconButton(
@@ -152,7 +154,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                       },
                       icon: const Icon(
                         Icons.add,
-                        color: Colors.white,
+                        color: AppColors.white,
                         size: 20,
                       ),
                     ),
@@ -162,7 +164,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                     '\$${widget.book.price * quantity}',
                     style: const TextStyle(
                       fontSize: 18,
-                      color: Color(0xFF54408C),
+                      color: AppColors.primary500,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -175,7 +177,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF54408C),
+                        backgroundColor: AppColors.primary500,
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -185,7 +187,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                         "Continue Shopping",
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -196,7 +198,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[300],
+                        backgroundColor: AppColors.grey200,
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -206,7 +208,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                         "View Cart",
                         style: TextStyle(
                           fontSize: 16,
-                          color: Color(0xFF54408C),
+                          color: AppColors.primary500,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

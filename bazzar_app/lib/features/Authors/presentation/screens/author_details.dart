@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +46,14 @@ class AuthorDetails extends StatelessWidget {
                         ...List.generate(5, (index) {
                           if (index < author.rate.floor()) {
                             return SvgPicture.asset(
-                              "assets/Icon/Star.svg",
+                              AppAssets.starIcon,
                               width: iconSize,
                               height: iconSize,
                               color: const Color(0xFFFFC107),
                             );
                           } else {
                             return SvgPicture.asset(
-                              "assets/Icon/Star.svg",
+                              AppAssets.starIcon,
                               width: iconSize,
                               height: iconSize,
                               color: const Color.fromARGB(213, 0, 0, 0),

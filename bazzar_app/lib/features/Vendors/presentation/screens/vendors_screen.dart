@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Vendors/data/models/vendor_model.dart';
 import 'package:bazzar_app/features/Vendors/presentation/widgets/vendor_details_widget.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
@@ -11,10 +12,7 @@ class VendorsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: 'Vendors',
-        iconPath: "assets/Icon/Search.svg",
-      ),
+      appBar: AppBarWidget(title: 'Vendors', iconPath: AppAssets.searchIcon),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
         child: ListView(
