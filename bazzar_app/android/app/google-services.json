@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "637975748558",
+    "project_id": "bazzar-book-project",
+    "storage_bucket": "bazzar-book-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637975748558:android:92b8de542097eb28bfd59f",
+        "android_client_info": {
+          "package_name": "com.example.bazzar_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbQhpoIyvXERJue8NCjd9m12h90ouP9TA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

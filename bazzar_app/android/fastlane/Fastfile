@@ -1,0 +1,18 @@
+platform :android do
+  desc "Build and distribute to Firebase App Distribution"
+  lane :test do
+    # Build APK with Flutter
+    sh "flutter clean"
+    sh "flutter pub get"
+    sh "flutter build apk --release"
+    
+    # Then distribute to Firebase
+    firebase_app_distribution(
+      app: "1:637975748558:android:92b8de542097eb28bfd59f",
+      firebase_cli_token: "1//03O4Bf2IP4AfVCgYIARAAGAMSNgF-L9IreSEEAfdp5KniSIcOrbeZNapLXtE2Ah4JIMGdHmKKjczfb8d08tuuVhJh46jsePwSNw",
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
+      testers: "amrali511111@gmail.com"
+    )
+  end
+end

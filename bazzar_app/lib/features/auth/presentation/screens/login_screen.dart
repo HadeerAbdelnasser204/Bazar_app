@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _onSignIn() {
     FocusScope.of(context).unfocus();
     if (_formKey.currentState?.validate() ?? false) {
-      // replace with home route
+      context.push(AppRoutes.homeScreen);
     }
   }
 
