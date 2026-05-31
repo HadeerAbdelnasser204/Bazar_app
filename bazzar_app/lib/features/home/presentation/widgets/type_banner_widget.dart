@@ -1,6 +1,6 @@
-import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
-import 'package:bazzar_app/features/Vendors/presentation/screens/vendors_screen.dart';
+import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TypeBannerWidget extends StatelessWidget {
   const TypeBannerWidget({
@@ -24,16 +24,10 @@ class TypeBannerWidget extends StatelessWidget {
         Spacer(),
         TextButton(
           onPressed: () {
-            print(isVendor);
-
             if (isVendor) {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => VendorsScreen()));
+              context.push(AppRoutes.vendorScreen);
             } else if (isCircle) {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => AuthorsScreen()));
+              context.push(AppRoutes.authorScreen);
             } else {
               // Navigator.of(
               //   context,

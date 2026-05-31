@@ -1,7 +1,8 @@
+import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
-import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AuthorWidget extends StatelessWidget {
   const AuthorWidget({super.key, required this.author});
@@ -14,12 +15,9 @@ class AuthorWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => AuthorDetails(author: author),
-            ),
-          );
+          context.push(AppRoutes.authorDetailsScreen, extra: author);
         },
+
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

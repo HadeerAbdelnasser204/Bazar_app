@@ -1,3 +1,7 @@
+import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
+import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
+import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
+import 'package:bazzar_app/features/Vendors/presentation/screens/vendors_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/forget_password.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/new_password.dart';
@@ -24,6 +28,9 @@ class AppRoutes {
   static const String passwordChangedSuccessScreen =
       '/password_changed_success';
   static const String homeScreen = '/home';
+  static const String authorScreen = '/authors_screen';
+  static const String authorDetailsScreen = '/author_details';
+  static const String vendorScreen = '/vendors_screen';
   static const String chooseSignUpMethodScreen =
       '/choose_sign_up_method_screen';
 }
@@ -72,6 +79,24 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
 
+    GoRoute(
+      path: AppRoutes.authorScreen,
+      builder: (context, state) => const AuthorsScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.vendorScreen,
+      builder: (context, state) => const VendorsScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.authorDetailsScreen,
+      builder: (context, state) {
+        final author = state.extra as AuthorModel;
+
+        return AuthorDetails(author: author);
+      },
+    ),
     // GoRoute(
     //   path: AppRoutes.chooseSignUpMethodScreen,
     //   builder: (context, state) => const ChooseSignUpMethodScreen(),

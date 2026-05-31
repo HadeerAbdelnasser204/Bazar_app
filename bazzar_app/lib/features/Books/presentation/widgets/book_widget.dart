@@ -18,10 +18,11 @@ class BookWidget extends StatelessWidget {
 
         child: InkWell(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => BookDetailsScreen(book: book),
-              ),
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (_) => BookDetailsScreen(book: book),
             );
           },
 
