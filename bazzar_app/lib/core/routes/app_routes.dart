@@ -9,9 +9,14 @@ import 'package:bazzar_app/features/auth/presentation/screens/password_changed_s
 import 'package:bazzar_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/widgets/verify_flow.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/verify_screen.dart';
+import 'package:bazzar_app/features/categories/presentation/screens/categories_screen.dart';
+import 'package:bazzar_app/features/categories/presentation/screens/search_screen.dart';
+import 'package:bazzar_app/features/favorites/presentation/screens/favorites_screen.dart';
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
 import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
+import 'package:bazzar_app/features/profile/presentation/screens/account_screen.dart';
+import 'package:bazzar_app/features/profile/presentation/screens/profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
@@ -27,16 +32,23 @@ class AppRoutes {
   static const String newPasswordScreen = '/new_password';
   static const String passwordChangedSuccessScreen =
       '/password_changed_success';
+  static const String chooseSignUpMethodScreen =
+      '/choose_sign_up_method_screen';
+
+  //---------------------App Screens---------------------//
   static const String homeScreen = '/home';
+  static const String categoryScreen = '/category_screen';
   static const String authorScreen = '/authors_screen';
   static const String authorDetailsScreen = '/author_details';
   static const String vendorScreen = '/vendors_screen';
-  static const String chooseSignUpMethodScreen =
-      '/choose_sign_up_method_screen';
+  static const String searchScreen = '/search_screen';
+  static const String profileScreen = '/profile_screen';
+  static const String account = '/account_screen';
+  static const String favorites = '/favorites_screen';
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.splashScreen,
+  initialLocation: AppRoutes.homeScreen,
   routes: [
     GoRoute(
       path: AppRoutes.splashScreen,
@@ -78,7 +90,10 @@ final GoRouter router = GoRouter(
       path: AppRoutes.homeScreen,
       builder: (context, state) => const HomeScreen(),
     ),
-
+    GoRoute(
+      path: AppRoutes.categoryScreen,
+      builder: (context, state) => const CategoriesScreen(),
+    ),
     GoRoute(
       path: AppRoutes.authorScreen,
       builder: (context, state) => const AuthorsScreen(),
@@ -96,6 +111,25 @@ final GoRouter router = GoRouter(
 
         return AuthorDetails(author: author);
       },
+    ),
+
+    GoRoute(
+      path: AppRoutes.searchScreen,
+      builder: (context, state) => const SearchScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.profileScreen,
+      builder: (context, state) => const ProfileScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.account,
+      builder: (context, state) => const AccountScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.favorites,
+      builder: (context, state) => const FavoritesScreen(),
     ),
     // GoRoute(
     //   path: AppRoutes.chooseSignUpMethodScreen,

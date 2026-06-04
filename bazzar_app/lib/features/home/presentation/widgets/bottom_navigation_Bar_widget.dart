@@ -1,10 +1,13 @@
+import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
-  const BottomNavigationBarWidget({super.key});
+  const BottomNavigationBarWidget({super.key, required this.currentIndex});
+  final int currentIndex;
 
   @override
   State<BottomNavigationBarWidget> createState() =>
@@ -12,18 +15,22 @@ class BottomNavigationBarWidget extends StatefulWidget {
 }
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
-  int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: AppColors.grey100,
-      currentIndex: currentIndex,
+      currentIndex: widget.currentIndex,
 
       onTap: (index) {
-        setState(() {
-          currentIndex = index;
-        });
+        if (index == 0) {
+          context.go(AppRoutes.homeScreen);
+        } else if (index == 1) {
+          context.go(AppRoutes.categoryScreen);
+        } else if (index == 2) {
+          context.go(AppRoutes.vendorScreen);
+        } else if (index == 3) {
+          context.go(AppRoutes.profileScreen);
+        }
       },
 
       type: BottomNavigationBarType.fixed,
@@ -47,7 +54,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             AppAssets.homeIcon,
 
             colorFilter: ColorFilter.mode(
-              currentIndex == 0 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 0
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -59,7 +68,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             AppAssets.menuIcon,
 
             colorFilter: ColorFilter.mode(
-              currentIndex == 1 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 1
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -70,7 +81,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           icon: SvgPicture.asset(
             AppAssets.cartIcon,
             colorFilter: ColorFilter.mode(
-              currentIndex == 2 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 2
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -82,7 +95,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             AppAssets.profileIcon,
 
             colorFilter: ColorFilter.mode(
-              currentIndex == 3 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 3
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),

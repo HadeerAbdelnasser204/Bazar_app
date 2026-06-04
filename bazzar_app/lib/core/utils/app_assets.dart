@@ -9,4 +9,7 @@ class AppAssets {
   static const String menuIcon = "assets/Icon/Menu-Fill.svg";
   static const String notificationIcon =
       "assets/Icon/notification-alert-svgrepo-com.svg";
+  static const String arrowBackIcon = 'assets/Icon/arrow-back-svgrepo-com.svg';
+  static const String phoneIcon = 'assets/Icon/Phone-Outline.svg';
+  static const String passwordOutline = 'assets/Icon/Password-Outline.svg';
 }
