@@ -9,9 +9,14 @@ import 'package:bazzar_app/features/auth/presentation/screens/password_changed_s
 import 'package:bazzar_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/widgets/verify_flow.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/verify_screen.dart';
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/confirm_order_screen.dart';
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
 import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/cart_screen.dart';
+import 'package:bazzar_app/features/location/presentation/screens/add_address_screen.dart';
+import 'package:bazzar_app/features/location/presentation/screens/location_screen.dart';
+import 'package:bazzar_app/features/notifications/presentation/screens/notification_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
@@ -31,6 +36,13 @@ class AppRoutes {
   static const String authorScreen = '/authors_screen';
   static const String authorDetailsScreen = '/author_details';
   static const String vendorScreen = '/vendors_screen';
+  //-----------------Cart & Checkout------------------
+  static const String notificationScreen = '/notification_screen';
+  static const String cartScreen = '/cart_screen';
+  static const String confirmOrder = '/confirm_screen';
+  static const String locationScreen = '/location_screen';
+  static const String addAddress = '/address_screen';
+
   static const String chooseSignUpMethodScreen =
       '/choose_sign_up_method_screen';
 }
@@ -97,9 +109,33 @@ final GoRouter router = GoRouter(
         return AuthorDetails(author: author);
       },
     ),
-    // GoRoute(
-    //   path: AppRoutes.chooseSignUpMethodScreen,
-    //   builder: (context, state) => const ChooseSignUpMethodScreen(),
-    // ),
+
+    GoRoute(
+      path: AppRoutes.notificationScreen,
+      builder: (context, state) {
+        final isEmpty = state.uri.queryParameters['empty'] == 'true';
+        return NotificationScreen(notifications: isEmpty ? const [] : null);
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutes.cartScreen,
+      builder: (context, state) {
+        final isEmpty = state.uri.queryParameters['empty'] == 'true';
+        return CartScreen(items: isEmpty ? const [] : null);
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.confirmOrder,
+      builder: (context, state) => const ConfirmOrderScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.locationScreen,
+      builder: (context, state) => const LocationScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.addAddress,
+      builder: (context, state) => const AddAddressScreen(),
+    ),
   ],
 );

@@ -1,92 +1,95 @@
+import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
-class BottomNavigationBarWidget extends StatefulWidget {
-  const BottomNavigationBarWidget({super.key});
+class BottomNavigationBarWidget extends StatelessWidget {
+  const BottomNavigationBarWidget({
+    super.key,
+    this.selectedIndex = 0,
+    this.cartItemCount = 0,
+  });
 
-  @override
-  State<BottomNavigationBarWidget> createState() =>
-      _BottomNavigationBarWidgetState();
-}
+  final int selectedIndex;
+  final int cartItemCount;
 
-class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
-  int currentIndex = 0;
+  void _onTap(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        context.go(AppRoutes.homeScreen);
+      case 2:
+        context.go(AppRoutes.cartScreen);
+      default:
+        break;
+    }
+  }
+
+  String _cartLabel() {
+    if (cartItemCount > 0) {
+      return 'Cart ($cartItemCount)';
+    }
+    return 'Cart';
+  }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: AppColors.grey100,
-      currentIndex: currentIndex,
-
-      onTap: (index) {
-        setState(() {
-          currentIndex = index;
-        });
-      },
-
+      currentIndex: selectedIndex,
+      onTap: (index) => _onTap(context, index),
       type: BottomNavigationBarType.fixed,
-
       selectedItemColor: AppColors.primary500,
       unselectedItemColor: AppColors.grey500,
-
       selectedLabelStyle: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.bold,
       ),
-
       unselectedLabelStyle: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.bold,
       ),
-
       items: [
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.homeIcon,
-
             colorFilter: ColorFilter.mode(
-              currentIndex == 0 ? AppColors.primary500 : AppColors.grey500,
+              selectedIndex == 0 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
-          label: "Home",
+          label: 'Home',
         ),
-
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.menuIcon,
-
             colorFilter: ColorFilter.mode(
-              currentIndex == 1 ? AppColors.primary500 : AppColors.grey500,
+              selectedIndex == 1 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
-          label: "Category",
+          label: 'Category',
         ),
-
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.cartIcon,
             colorFilter: ColorFilter.mode(
-              currentIndex == 2 ? AppColors.primary500 : AppColors.grey500,
+              selectedIndex == 2 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
-          label: "Cart",
+          label: _cartLabel(),
         ),
-
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.profileIcon,
-
             colorFilter: ColorFilter.mode(
-              currentIndex == 3 ? AppColors.primary500 : AppColors.grey500,
+              selectedIndex == 3 ? AppColors.primary500 : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
-          label: "Profile",
+          label: 'Profile',
         ),
       ],
     );

@@ -8,11 +8,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.iconPath,
     this.leadingIconPath,
+    this.onIconPressed,
   });
 
   final String? leadingIconPath;
   final String title;
   final String? iconPath;
+  final VoidCallback? onIconPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (iconPath != null)
           IconButton(
-            onPressed: () {},
+            onPressed: onIconPressed,
             icon: SvgPicture.asset(iconPath!, width: 24, height: 24),
           ),
       ],
