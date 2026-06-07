@@ -15,6 +15,7 @@ import 'package:bazzar_app/features/favorites/presentation/screens/favorites_scr
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
 import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
+import 'package:bazzar_app/features/order/presentation/screens/order_history_screen.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/account_screen.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/profile_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -45,6 +46,7 @@ class AppRoutes {
   static const String profileScreen = '/profile_screen';
   static const String account = '/account_screen';
   static const String favorites = '/favorites_screen';
+  static const String orderHistory = "/order_history_screen";
 }
 
 final GoRouter router = GoRouter(
@@ -130,6 +132,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.favorites,
       builder: (context, state) => const FavoritesScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.orderHistory,
+      builder: (context, state) => const OrderHistoryScreen(),
     ),
     // GoRoute(
     //   path: AppRoutes.chooseSignUpMethodScreen,

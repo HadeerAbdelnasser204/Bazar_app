@@ -3,6 +3,7 @@ import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/book_image_widget.dart';
+import 'package:bazzar_app/features/favorites/data/models/favorite_model.dart';
 import 'package:bazzar_app/features/favorites/presentation/widgets/favorite_book_section.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,20 @@ class FavoritesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-        child: Column(
-          children: [
-            Padding(
+        child: ListView.builder(
+          itemCount: favoriteBooks.length,
+          itemBuilder: (context, index) {
+            return Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: FavoriteBookSection(book: dummyBooks[0]),
-            ),
-            Divider(thickness: 1, color: AppColors.grey300),
-          ],
+              child: Column(
+                children: [
+                  FavoriteBookSection(book: favoriteBooks[index]),
+                  AppSpacing.h10,
+                  Divider(thickness: 1, color: AppColors.grey300),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

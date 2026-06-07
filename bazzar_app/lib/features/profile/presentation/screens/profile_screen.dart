@@ -76,6 +76,9 @@ class ProfileScreen extends StatelessWidget {
             ProfileSection(
               sectionTitle: "Order History",
               leadingIcon: Icons.list_alt_rounded,
+              onPressed: () {
+                context.push(AppRoutes.orderHistory);
+              },
             ),
             AppSpacing.h15,
 

@@ -17,8 +17,8 @@ class FavoriteBookSection extends StatelessWidget {
       children: [
         BookImageWidget(
           imageName: book.image,
-          width: 90,
-          height: 90,
+          width: 80,
+          height: 80,
           radius: 20,
         ),
 
