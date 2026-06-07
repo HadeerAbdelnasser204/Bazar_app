@@ -1,6 +1,5 @@
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
-import 'package:bazzar_app/features/categories/data/data_sources/dummy_search_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

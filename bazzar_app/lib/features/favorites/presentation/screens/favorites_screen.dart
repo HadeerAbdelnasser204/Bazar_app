@@ -1,13 +1,10 @@
 import 'package:bazzar_app/core/constants/app_spacing.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
-import 'package:bazzar_app/features/Books/data/models/book_model.dart';
-import 'package:bazzar_app/features/Books/presentation/widgets/book_image_widget.dart';
 import 'package:bazzar_app/features/favorites/data/models/favorite_model.dart';
 import 'package:bazzar_app/features/favorites/presentation/widgets/favorite_book_section.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class FavoritesScreen extends StatelessWidget {

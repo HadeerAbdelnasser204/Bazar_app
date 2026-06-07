@@ -10,7 +10,6 @@ import 'package:bazzar_app/features/auth/presentation/screens/register_screen.da
 import 'package:bazzar_app/features/auth/presentation/widgets/verify_flow.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/verify_screen.dart';
 import 'package:bazzar_app/features/categories/presentation/screens/categories_screen.dart';
-import 'package:bazzar_app/features/categories/presentation/screens/search_screen.dart';
 import 'package:bazzar_app/features/favorites/presentation/screens/favorites_screen.dart';
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
@@ -18,6 +17,7 @@ import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
 import 'package:bazzar_app/features/order/presentation/screens/order_history_screen.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/account_screen.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/profile_screen.dart';
+import 'package:bazzar_app/features/search/presentation/screens/search_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {

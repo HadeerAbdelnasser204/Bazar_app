@@ -1,7 +1,7 @@
 import 'package:bazzar_app/core/constants/app_spacing.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/categories/data/data_sources/dummy_search_history.dart';
-import 'package:bazzar_app/features/categories/presentation/widgets/search_text_field_widget.dart';
+import 'package:bazzar_app/features/search/presentation/widgets/search_text_field_widget.dart';
 import 'package:flutter/material.dart';
 
 class SearchBody extends StatefulWidget {
