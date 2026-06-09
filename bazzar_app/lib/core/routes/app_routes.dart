@@ -10,6 +10,8 @@ import 'package:bazzar_app/features/auth/presentation/screens/register_screen.da
 import 'package:bazzar_app/features/auth/presentation/widgets/verify_flow.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/verify_screen.dart';
 import 'package:bazzar_app/features/cart&checkout/presentation/screens/confirm_order_screen.dart';
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/order_received_rating_screen.dart';
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/order_status.dart';
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
 import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
@@ -40,6 +42,8 @@ class AppRoutes {
   static const String notificationScreen = '/notification_screen';
   static const String cartScreen = '/cart_screen';
   static const String confirmOrder = '/confirm_screen';
+  static const String orderStatus = '/order_status';
+  static const String orderReceivedRating = '/order_received_rating';
   static const String locationScreen = '/location_screen';
   static const String addAddress = '/address_screen';
 
@@ -128,6 +132,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.confirmOrder,
       builder: (context, state) => const ConfirmOrderScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.orderStatus,
+      builder: (context, state) => const OrderStatusScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.orderReceivedRating,
+      builder: (context, state) => const OrderReceivedRatingScreen(),
     ),
     GoRoute(
       path: AppRoutes.locationScreen,

@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/auth/presentation/widgets/custom_button.dart';
 import 'package:bazzar_app/features/cart&checkout/presentation/widgets/build_address_card.dart';
@@ -5,6 +6,7 @@ import 'package:bazzar_app/features/cart&checkout/presentation/widgets/build_pay
 import 'package:bazzar_app/features/cart&checkout/presentation/widgets/build_summary_card.dart';
 import 'package:bazzar_app/features/cart&checkout/presentation/widgets/date_time_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ConfirmOrderScreen extends StatefulWidget {
   const ConfirmOrderScreen({super.key});
@@ -78,7 +80,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
 
               CustomeButton(
                 text: "Order",
-                onPressed: () {},
+                onPressed: () => context.push(AppRoutes.orderStatus),
                 buttonColor: AppColors.primary500,
                 textColor: AppColors.white,
                 borderSide: BorderSide.none,

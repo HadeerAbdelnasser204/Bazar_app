@@ -25,7 +25,7 @@ class _PaymentMethodSheetState extends State<PaymentMethodSheet> {
 
           PaymentMethodItem(
             title: 'KNET',
-            image: 'assets/images/Group (3).png',
+            image: 'assets/images/Group(3).png',
             isSelected: selectedPayment == 0,
             onTap: () {
               setState(() {
