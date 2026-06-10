@@ -27,7 +27,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         } else if (index == 1) {
           context.go(AppRoutes.categoryScreen);
         } else if (index == 2) {
-          context.go(AppRoutes.vendorScreen);
+          context.go(AppRoutes.cartScreen);
         } else if (index == 3) {
           context.go(AppRoutes.profileScreen);
         }
