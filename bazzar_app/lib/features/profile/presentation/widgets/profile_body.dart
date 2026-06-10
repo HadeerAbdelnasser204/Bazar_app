@@ -61,6 +61,9 @@ class ProfileBody extends StatelessWidget {
           ProfileSection(
             sectionTitle: "Addresses",
             leadingIcon: Icons.location_on,
+            onPressed: () {
+              context.push(AppRoutes.locationScreen);
+            },
           ),
           AppSpacing.h15,
 

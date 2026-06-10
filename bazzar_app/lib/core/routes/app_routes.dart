@@ -74,7 +74,7 @@ class AppRoutes {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.homeScreen,
+  initialLocation: AppRoutes.splashScreen,
   routes: [
     GoRoute(
       path: AppRoutes.splashScreen,
