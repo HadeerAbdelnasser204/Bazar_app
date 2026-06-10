@@ -19,11 +19,12 @@ class HomeScreen extends StatelessWidget {
         title: 'Home',
         iconPath: AppAssets.notificationIcon,
         leadingIconPath: AppAssets.searchIcon,
-        onIconPressed: () => context.push(AppRoutes.notificationScreen),
+        iconOnPressed: () => context.push(AppRoutes.notificationScreen),
       ),
 
       body: HomeBody(),
-      bottomNavigationBar: const BottomNavigationBarWidget(selectedIndex: 0),
+
+      bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 0),
     );
   }
 }

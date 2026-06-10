@@ -2,6 +2,7 @@ import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
 import 'package:bazzar_app/features/Vendors/presentation/screens/vendors_screen.dart';
+
 import 'package:bazzar_app/features/auth/presentation/screens/forget_password.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/new_password.dart';
@@ -9,24 +10,35 @@ import 'package:bazzar_app/features/auth/presentation/screens/password_changed_s
 import 'package:bazzar_app/features/auth/presentation/screens/register_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/widgets/verify_flow.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/verify_screen.dart';
-import 'package:bazzar_app/features/cart&checkout/presentation/screens/confirm_order_screen.dart';
-import 'package:bazzar_app/features/cart&checkout/presentation/screens/order_received_rating_screen.dart';
-import 'package:bazzar_app/features/cart&checkout/presentation/screens/order_status.dart';
+
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
 import 'package:bazzar_app/features/intial_screens/onboarding_screen.dart';
 import 'package:bazzar_app/features/intial_screens/splash_screen.dart';
+
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/confirm_order_screen.dart';
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/order_received_rating_screen.dart';
+import 'package:bazzar_app/features/cart&checkout/presentation/screens/order_status.dart';
 import 'package:bazzar_app/features/cart&checkout/presentation/screens/cart_screen.dart';
+
 import 'package:bazzar_app/features/location/presentation/screens/add_address_screen.dart';
 import 'package:bazzar_app/features/location/presentation/screens/location_screen.dart';
 import 'package:bazzar_app/features/notifications/presentation/screens/notification_screen.dart';
+
+import 'package:bazzar_app/features/categories/presentation/screens/categories_screen.dart';
+import 'package:bazzar_app/features/favorites/presentation/screens/favorites_screen.dart';
+import 'package:bazzar_app/features/order/presentation/screens/order_history_screen.dart';
+import 'package:bazzar_app/features/profile/presentation/screens/account_screen.dart';
+import 'package:bazzar_app/features/profile/presentation/screens/profile_screen.dart';
+import 'package:bazzar_app/features/search/presentation/screens/search_screen.dart';
+
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
-  //------------Initial Screens------------//
+  // ------------ Initial Screens ------------ //
   static const String splashScreen = '/splash_screen';
   static const String onboardingScreen = '/onboarding';
 
-  //------------Authentication Screens------------//
+  // ------------ Authentication Screens ------------ //
   static const String loginScreen = '/login_screen';
   static const String signUpScreen = '/sign_up_screen';
   static const String verifyScreen = '/verify_screen';
@@ -34,11 +46,17 @@ class AppRoutes {
   static const String newPasswordScreen = '/new_password';
   static const String passwordChangedSuccessScreen =
       '/password_changed_success';
+  static const String chooseSignUpMethodScreen =
+      '/choose_sign_up_method_screen';
+
+  // ------------ App Main Screens ------------ //
   static const String homeScreen = '/home';
+  static const String categoryScreen = '/category_screen';
   static const String authorScreen = '/authors_screen';
   static const String authorDetailsScreen = '/author_details';
   static const String vendorScreen = '/vendors_screen';
-  //-----------------Cart & Checkout------------------
+
+  // ------------ Cart & Checkout ------------ //
   static const String notificationScreen = '/notification_screen';
   static const String cartScreen = '/cart_screen';
   static const String confirmOrder = '/confirm_screen';
@@ -47,12 +65,16 @@ class AppRoutes {
   static const String locationScreen = '/location_screen';
   static const String addAddress = '/address_screen';
 
-  static const String chooseSignUpMethodScreen =
-      '/choose_sign_up_method_screen';
+  // ------------ New Features ------------ //
+  static const String searchScreen = '/search_screen';
+  static const String profileScreen = '/profile_screen';
+  static const String account = '/account_screen';
+  static const String favorites = '/favorites_screen';
+  static const String orderHistory = '/order_history_screen';
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.splashScreen,
+  initialLocation: AppRoutes.homeScreen,
   routes: [
     GoRoute(
       path: AppRoutes.splashScreen,
@@ -62,6 +84,8 @@ final GoRouter router = GoRouter(
       path: AppRoutes.onboardingScreen,
       builder: (_, __) => const OnboardingScreen(),
     ),
+
+    // ------------ Auth ------------ //
     GoRoute(
       path: AppRoutes.loginScreen,
       builder: (context, state) => const LoginScreen(),
@@ -90,16 +114,20 @@ final GoRouter router = GoRouter(
       path: AppRoutes.passwordChangedSuccessScreen,
       builder: (context, state) => const PasswordChangedSuccessScreen(),
     ),
+
+    // ------------ Main ------------ //
     GoRoute(
       path: AppRoutes.homeScreen,
       builder: (context, state) => const HomeScreen(),
     ),
-
+    GoRoute(
+      path: AppRoutes.categoryScreen,
+      builder: (context, state) => const CategoriesScreen(),
+    ),
     GoRoute(
       path: AppRoutes.authorScreen,
       builder: (context, state) => const AuthorsScreen(),
     ),
-
     GoRoute(
       path: AppRoutes.vendorScreen,
       builder: (context, state) => const VendorsScreen(),
@@ -109,11 +137,11 @@ final GoRouter router = GoRouter(
       path: AppRoutes.authorDetailsScreen,
       builder: (context, state) {
         final author = state.extra as AuthorModel;
-
         return AuthorDetails(author: author);
       },
     ),
 
+    // ------------ Cart & Checkout ------------ //
     GoRoute(
       path: AppRoutes.notificationScreen,
       builder: (context, state) {
@@ -121,7 +149,6 @@ final GoRouter router = GoRouter(
         return NotificationScreen(notifications: isEmpty ? const [] : null);
       },
     ),
-
     GoRoute(
       path: AppRoutes.cartScreen,
       builder: (context, state) {
@@ -148,6 +175,28 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.addAddress,
       builder: (context, state) => const AddAddressScreen(),
+    ),
+
+    // ------------ New Features ------------ //
+    GoRoute(
+      path: AppRoutes.searchScreen,
+      builder: (context, state) => const SearchScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.profileScreen,
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.account,
+      builder: (context, state) => const AccountScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.favorites,
+      builder: (context, state) => const FavoritesScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.orderHistory,
+      builder: (context, state) => const OrderHistoryScreen(),
     ),
   ],
 );

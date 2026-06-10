@@ -5,40 +5,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({
-    super.key,
-    this.selectedIndex = 0,
-    this.cartItemCount = 0,
-  });
+class BottomNavigationBarWidget extends StatefulWidget {
+  const BottomNavigationBarWidget({super.key, required this.currentIndex});
 
-  final int selectedIndex;
-  final int cartItemCount;
+  final int currentIndex;
 
-  void _onTap(BuildContext context, int index) {
-    switch (index) {
-      case 0:
-        context.go(AppRoutes.homeScreen);
-      case 2:
-        context.go(AppRoutes.cartScreen);
-      default:
-        break;
-    }
-  }
+  @override
+  State<BottomNavigationBarWidget> createState() =>
+      _BottomNavigationBarWidgetState();
+}
 
-  String _cartLabel() {
-    if (cartItemCount > 0) {
-      return 'Cart ($cartItemCount)';
-    }
-    return 'Cart';
-  }
-
+class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: AppColors.grey100,
-      currentIndex: selectedIndex,
-      onTap: (index) => _onTap(context, index),
+      currentIndex: widget.currentIndex,
+      onTap: (index) {
+        if (index == 0) {
+          context.go(AppRoutes.homeScreen);
+        } else if (index == 1) {
+          context.go(AppRoutes.categoryScreen);
+        } else if (index == 2) {
+          context.go(AppRoutes.vendorScreen);
+        } else if (index == 3) {
+          context.go(AppRoutes.profileScreen);
+        }
+      },
       type: BottomNavigationBarType.fixed,
       selectedItemColor: AppColors.primary500,
       unselectedItemColor: AppColors.grey500,
@@ -55,7 +48,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
           icon: SvgPicture.asset(
             AppAssets.homeIcon,
             colorFilter: ColorFilter.mode(
-              selectedIndex == 0 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 0
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -65,7 +60,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
           icon: SvgPicture.asset(
             AppAssets.menuIcon,
             colorFilter: ColorFilter.mode(
-              selectedIndex == 1 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 1
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
@@ -75,17 +72,21 @@ class BottomNavigationBarWidget extends StatelessWidget {
           icon: SvgPicture.asset(
             AppAssets.cartIcon,
             colorFilter: ColorFilter.mode(
-              selectedIndex == 2 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 2
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),
-          label: _cartLabel(),
+          label: 'Cart',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.profileIcon,
             colorFilter: ColorFilter.mode(
-              selectedIndex == 3 ? AppColors.primary500 : AppColors.grey500,
+              widget.currentIndex == 3
+                  ? AppColors.primary500
+                  : AppColors.grey500,
               BlendMode.srcIn,
             ),
           ),

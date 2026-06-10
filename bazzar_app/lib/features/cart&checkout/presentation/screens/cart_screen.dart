@@ -109,10 +109,7 @@ class _CartScreenState extends State<CartScreen> {
         onOrderNow: _onOrderNow,
       ),
 
-      bottomNavigationBar: BottomNavigationBarWidget(
-        selectedIndex: 2,
-        cartItemCount: _cartItemCount,
-      ),
+      bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 2),
     );
   }
 }

@@ -11,6 +11,7 @@ class CustomeButton extends StatelessWidget {
     this.withIcon = false,
     this.icon,
     required this.borderSide,
+    this.radius = 48,
   });
 
   final String text;
@@ -20,6 +21,7 @@ class CustomeButton extends StatelessWidget {
   final bool withIcon;
   final Widget? icon;
   final BorderSide borderSide;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class CustomeButton extends StatelessWidget {
           backgroundColor: buttonColor,
           side: borderSide,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(48),
+            borderRadius: BorderRadius.circular(radius),
           ),
         ),
         child: Row(

@@ -1,30 +1,24 @@
-import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
-import 'package:bazzar_app/features/search/presentation/widgets/search-body.dart';
+import 'package:bazzar_app/features/order/presentation/widgets/order_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class OrderHistoryScreen extends StatelessWidget {
+  const OrderHistoryScreen({super.key});
 
-  @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarWidget(
-        title: "Search",
+        title: "Order History",
         leadingIconPath: AppAssets.arrowBackIcon,
         leadingOnPressed: () {
-          context.go(AppRoutes.categoryScreen);
+          context.pop();
         },
       ),
-      body: SearchBody(),
+      body: OrderHistoryBody(),
     );
   }
 }

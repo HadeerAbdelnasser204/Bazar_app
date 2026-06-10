@@ -6,6 +6,7 @@ import 'package:bazzar_app/features/Books/presentation/widgets/book_image_widget
 import 'package:bazzar_app/features/Books/presentation/widgets/custom_elevated_button.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/quantity_selector.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/rating_widget.dart';
+import 'package:bazzar_app/features/Books/presentation/widgets/show_model_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -28,17 +29,7 @@ class BookDetailsModel extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  width: 60,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
+              Center(child: ShowModelLine()),
 
               BookImageWidget(
                 imageColor: AppColors.grey200,

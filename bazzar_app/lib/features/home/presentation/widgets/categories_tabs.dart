@@ -17,61 +17,57 @@ class _CategoriesTabsState extends State<CategoriesTabs> {
     return SizedBox(
       height: 50,
 
-      child: SingleChildScrollView(
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        itemCount: widget.categories.length,
+        itemBuilder: (contex, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
 
-        child: Row(
-          children: List.generate(widget.categories.length, (index) {
-            final isSelected = selectedIndex == index;
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
 
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
 
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                children: [
+                  Text(
+                    widget.categories[index],
 
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                    style: TextStyle(
+                      fontSize: 16,
 
-                  children: [
-                    Text(
-                      widget.categories[index],
+                      fontWeight: selectedIndex == index
+                          ? FontWeight.bold
+                          : FontWeight.normal,
 
-                      style: TextStyle(
-                        fontSize: 16,
-
-                        fontWeight: isSelected
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-
-                        color: isSelected
-                            ? AppColors.grey900
-                            : AppColors.grey500,
-                      ),
+                      color: selectedIndex == index
+                          ? AppColors.grey900
+                          : AppColors.grey500,
                     ),
+                  ),
 
-                    const SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      height: 3,
-                      width: isSelected ? 30 : 0,
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    height: 3,
+                    width: selectedIndex == index ? 30 : 0,
 
-                      decoration: BoxDecoration(
-                        color: AppColors.primary500,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary500,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          }),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
