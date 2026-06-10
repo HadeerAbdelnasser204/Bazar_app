@@ -24,9 +24,7 @@ class _AccountScreenState extends State<AccountScreen> {
           context.pop();
         },
       ),
-      body: SingleChildScrollView(
-        child: Column(children: [AccountImageSection(), AccountInfoSection()]),
-      ),
+      body: ListView(children: [AccountImageSection(), AccountInfoSection()]),
     );
   }
 }
