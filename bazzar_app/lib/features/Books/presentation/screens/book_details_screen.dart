@@ -2,8 +2,10 @@
 
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
+import 'package:bazzar_app/features/Books/presentation/cubit/quantity_cubit.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/book_details_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookDetailsScreen extends StatefulWidget {
   const BookDetailsScreen({super.key, required this.book});
@@ -23,7 +25,10 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
       ),
 
-      child: BookDetailsModel(iconSize: 25, book: widget.book),
+      child: BlocProvider(
+        create: (context) => QuantityCubit(widget.book.price),
+        child: BookDetailsModel(iconSize: 25, book: widget.book),
+      ),
     );
   }
 }

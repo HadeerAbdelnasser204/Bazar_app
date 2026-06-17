@@ -31,17 +31,30 @@ class BookDetailsModel extends StatelessWidget {
             children: [
               Center(child: ShowModelLine()),
 
-              BookImageWidget(
-                imageColor: AppColors.grey200,
-                imageName: book.image,
+              Center(
+                child: BookImageWidget(
+                  imageColor: AppColors.grey200,
+                  imageName: book.image,
+                  height: 250,
+                  width: 200,
+                  radius: 20,
+                ),
               ),
+              AppSpacing.h20,
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    book.title,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      book.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   Spacer(),
                   IconButton(
@@ -64,7 +77,9 @@ class BookDetailsModel extends StatelessWidget {
               ),
               AppSpacing.h10,
               Text(
-                book.description,
+                book.description == ''
+                    ? "No Description Available"
+                    : book.description,
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               AppSpacing.h25,
@@ -79,7 +94,9 @@ class BookDetailsModel extends StatelessWidget {
               QuantitySelector(
                 minusButtonColor: AppColors.grey200,
                 plusButtonColor: AppColors.primary500,
+                price: book.price,
               ),
+
               AppSpacing.h25,
 
               Row(

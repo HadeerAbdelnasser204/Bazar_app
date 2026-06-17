@@ -34,26 +34,26 @@ class CategoriesScreen extends StatelessWidget {
               categories: ["All", "Novels", "Self Love", "Science", "Romantic"],
             ),
             AppSpacing.h15,
-            GridView.builder(
-              itemCount: dummyBooks.length,
-              itemBuilder: (context, index) {
-                return BookWidget(
-                  book: dummyBooks[index],
-                  width: 180,
-                  height: 180,
-                  boxWidth: double.infinity,
-                  titleSize: 16,
-                  priceSize: 14,
-                );
-              },
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 15,
-                childAspectRatio: 0.67,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-            ),
+            // GridView.builder(
+            //   itemCount: dummyBooks.length,
+            //   itemBuilder: (context, index) {
+            //     return BookWidget(
+            //       book: dummyBooks[index],
+            //       width: 180,
+            //       height: 180,
+            //       boxWidth: double.infinity,
+            //       titleSize: 16,
+            //       priceSize: 14,
+            //     );
+            //   },
+            //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //     crossAxisCount: 2,
+            //     crossAxisSpacing: 15,
+            //     childAspectRatio: 0.67,
+            //   ),
+            //   shrinkWrap: true,
+            //   physics: NeverScrollableScrollPhysics(),
+            // ),
           ],
         ),
       ),

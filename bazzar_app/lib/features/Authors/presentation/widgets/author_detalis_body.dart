@@ -76,7 +76,7 @@ class AuthorDetailsBody extends StatelessWidget {
           ),
           AppSpacing.h10,
 
-          AuthorProductsWidget(author: author),
+          // AuthorProductsWidget(author: author),
         ],
       ),
     );

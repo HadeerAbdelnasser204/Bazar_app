@@ -6,9 +6,9 @@ class BookImageWidget extends StatelessWidget {
     super.key,
     this.imageColor = AppColors.grey200,
     required this.imageName,
-    this.height = 280,
-    this.width = 220,
-    this.radius = 10,
+    this.height = 155,
+    this.width = 130,
+    this.radius = 15,
   });
 
   final String imageName;
@@ -19,19 +19,13 @@ class BookImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: imageColor,
-        borderRadius: BorderRadius.circular(radius!),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(radius!),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Image.asset(imageName, fit: BoxFit.contain),
-        ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(radius ?? 15),
+      child: Image.network(
+        imageName,
+        fit: BoxFit.contain,
+        width: width,
+        height: height,
       ),
     );
   }

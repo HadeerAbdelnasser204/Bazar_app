@@ -1,214 +1,46 @@
-import 'package:bazzar_app/core/utils/app_assets.dart';
-
+// import 'package:bazzar_app/core/utils/app_assets.dart';
 class BookModel {
+  final String id;
   final String title;
+  final List<String> authors;
+  final List<String> categories;
   final String image;
   final double price;
   final double rate;
   final String vendor;
+  final String puplisher;
   final String description;
 
   BookModel({
+    required this.id,
     required this.title,
+    required this.authors,
+    required this.categories,
     required this.image,
-    required this.price,
-    required this.rate,
+    this.price = 39.99,
+    this.rate = 3,
     required this.vendor,
+    required this.puplisher,
     required this.description,
   });
-}
 
-List<BookModel> dummyBooks = [
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Kite Runner",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.0,
-    vendor: "Gooday",
-    description: "A powerful story of friendship, betrayal, and redemption.",
-  ),
-  BookModel(
-    title: "The Subtle Art",
-    image: AppAssets.logo,
-    price: 20.99,
-    rate: 4.5,
-    vendor: "Wattpad",
-    description: "A counterintuitive approach to living a good life.",
-  ),
-  BookModel(
-    title: "The Art of War",
-    image: AppAssets.logo,
-    price: 14.99,
-    rate: 4.3,
-    vendor: "Crane & Co",
-    description: "Ancient Chinese military strategy and philosophy book.",
-  ),
-  BookModel(
-    title: "Atomic Habits",
-    image: AppAssets.logo,
-    price: 18.50,
-    rate: 4.8,
-    vendor: "Kuromi",
-    description: "Tiny changes that deliver remarkable results.",
-  ),
-  BookModel(
-    title: "Rich Dad Poor Dad",
-    image: AppAssets.logo,
-    price: 17.99,
-    rate: 4.7,
-    vendor: "Haymarket",
-    description: "What the rich teach their kids about money.",
-  ),
-  BookModel(
-    title: "Atomic Habits",
-    image: AppAssets.logo,
-    price: 18.50,
-    rate: 4.8,
-    vendor: "Kuromi",
-    description: "Tiny changes that deliver remarkable results.",
-  ),
-  BookModel(
-    title: "Rich Dad Poor Dad",
-    image: AppAssets.logo,
-    price: 17.99,
-    rate: 4.7,
-    vendor: "Haymarket",
-    description: "What the rich teach their kids about money.",
-  ),
-  BookModel(
-    title: "Atomic Habits",
-    image: AppAssets.logo,
-    price: 18.50,
-    rate: 4.8,
-    vendor: "Kuromi",
-    description: "Tiny changes that deliver remarkable results.",
-  ),
-  BookModel(
-    title: "Rich Dad Poor Dad",
-    image: AppAssets.logo,
-    price: 17.99,
-    rate: 4.7,
-    vendor: "Haymarket",
-    description: "What the rich teach their kids about money.",
-  ),
-];
+  factory BookModel.fromJson(Map<String, dynamic> response) {
+    final volumeInfo = response['volumeInfo'] ?? {};
+    return BookModel(
+      id: response['id'] ?? '',
+      title: volumeInfo['title'] ?? '',
+      authors: List<String>.from(volumeInfo['authors'] ?? []),
+      categories: List<String>.from(volumeInfo['categories'] ?? []),
+
+      image: volumeInfo['imageLinks']?['thumbnail'] ?? '',
+
+      price: 39.99,
+      rate: 3,
+
+      vendor: volumeInfo['publisher'] ?? '',
+      puplisher: volumeInfo['publisher'] ?? '',
+
+      description: volumeInfo['description'] ?? '',
+    );
+  }
+}
