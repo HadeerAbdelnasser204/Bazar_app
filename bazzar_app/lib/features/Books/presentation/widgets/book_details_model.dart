@@ -77,9 +77,9 @@ class BookDetailsModel extends StatelessWidget {
               ),
               AppSpacing.h10,
               Text(
-                book.description == ''
+                book.subtitle == ''
                     ? "No Description Available"
-                    : book.description,
+                    : book.subtitle,
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               AppSpacing.h25,
@@ -95,6 +95,7 @@ class BookDetailsModel extends StatelessWidget {
                 minusButtonColor: AppColors.grey200,
                 plusButtonColor: AppColors.primary500,
                 price: book.price,
+                currencyCode: book.currencyCode,
               ),
 
               AppSpacing.h25,

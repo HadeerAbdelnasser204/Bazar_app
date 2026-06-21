@@ -29,9 +29,7 @@ class TypeBannerWidget extends StatelessWidget {
             } else if (isCircle) {
               context.push(AppRoutes.authorScreen);
             } else {
-              // Navigator.of(
-              //   context,
-              // ).push(MaterialPageRoute(builder: (context) => ()));
+              context.push(AppRoutes.bookScreen);
             }
           },
           child: Text("See all", style: TextStyle(fontSize: 14)),

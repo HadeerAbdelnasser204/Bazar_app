@@ -1,8 +1,10 @@
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
+import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
+import 'package:bazzar_app/features/Books/presentation/screens/books_screen.dart';
+import 'package:bazzar_app/features/Vendors/presentation/cubit/vendor_cubit.dart';
 import 'package:bazzar_app/features/Vendors/presentation/screens/vendors_screen.dart';
-
 import 'package:bazzar_app/features/auth/presentation/screens/forget_password.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/new_password.dart';
@@ -30,6 +32,7 @@ import 'package:bazzar_app/features/order/presentation/screens/order_history_scr
 import 'package:bazzar_app/features/profile/presentation/screens/account_screen.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/profile_screen.dart';
 import 'package:bazzar_app/features/search/presentation/screens/search_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -51,6 +54,8 @@ class AppRoutes {
 
   // ------------ App Main Screens ------------ //
   static const String homeScreen = '/home';
+  static const String bookScreen = '/books_screen';
+
   static const String categoryScreen = '/category_screen';
   static const String authorScreen = '/authors_screen';
   static const String authorDetailsScreen = '/author_details';
@@ -121,6 +126,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
+      path: AppRoutes.bookScreen,
+      builder: (context, state) => BlocProvider(
+        create: (_) => BookCubit(bookRepo)..fetchAllBooks(),
+        child: const BooksScreen(),
+      ),
+    ),
+    GoRoute(
       path: AppRoutes.categoryScreen,
       builder: (context, state) => const CategoriesScreen(),
     ),
@@ -130,7 +142,12 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.vendorScreen,
-      builder: (context, state) => const VendorsScreen(),
+      builder: (context, state) {
+        return BlocProvider(
+          create: (_) => VendorCubit(vendorRepo)..fetchVendors(),
+          child: const VendorsScreen(),
+        );
+      },
     ),
 
     GoRoute(

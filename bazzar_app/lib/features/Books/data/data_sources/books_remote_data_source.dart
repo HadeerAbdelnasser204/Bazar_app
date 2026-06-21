@@ -22,4 +22,19 @@ class BooksRemoteDataSource {
         .map((e) => BookModel.fromJson(e))
         .toList();
   }
+
+  Future<List<BookModel>> getAllBooks() async {
+    final response = await apiService.get(
+      endPoint: ApiEndpoints.getBooks,
+      queryParameters: {
+        'q': 'f',
+        'maxResults': '40',
+        'key': ApiConstants.apiKey,
+      },
+    );
+
+    return (response['items'] as List)
+        .map((e) => BookModel.fromJson(e))
+        .toList();
+  }
 }

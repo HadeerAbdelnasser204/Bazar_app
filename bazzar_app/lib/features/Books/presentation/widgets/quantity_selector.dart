@@ -12,10 +12,12 @@ class QuantitySelector extends StatelessWidget {
     required this.minusButtonColor,
     required this.plusButtonColor,
     required this.price,
+    required this.currencyCode,
   });
   final Color minusButtonColor;
   final Color plusButtonColor;
   final double price;
+  final String currencyCode;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class QuantitySelector extends StatelessWidget {
             ),
             SizedBox(width: 20),
             Text(
-              '\$${state.total.toStringAsFixed(2)}',
+              '${state.total.toStringAsFixed(2)}  $currencyCode',
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,

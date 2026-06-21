@@ -69,7 +69,9 @@ class BookWidget extends StatelessWidget {
               AppSpacing.h5,
 
               Text(
-                '\$${book.price.toStringAsFixed(2)}',
+                book.price == 0
+                    ? 'Free'
+                    : '${book.price}  ${book.currencyCode}',
                 style: TextStyle(
                   fontSize: priceSize,
                   color: AppColors.primary500,

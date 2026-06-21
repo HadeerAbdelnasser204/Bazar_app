@@ -10,6 +10,8 @@ class BookModel {
   final String vendor;
   final String puplisher;
   final String description;
+  final String subtitle;
+  final String currencyCode;
 
   BookModel({
     required this.id,
@@ -17,15 +19,18 @@ class BookModel {
     required this.authors,
     required this.categories,
     required this.image,
-    this.price = 39.99,
+    required this.price,
     this.rate = 3,
     required this.vendor,
     required this.puplisher,
     required this.description,
+    required this.subtitle,
+    required this.currencyCode,
   });
 
   factory BookModel.fromJson(Map<String, dynamic> response) {
     final volumeInfo = response['volumeInfo'] ?? {};
+
     return BookModel(
       id: response['id'] ?? '',
       title: volumeInfo['title'] ?? '',
@@ -34,12 +39,14 @@ class BookModel {
 
       image: volumeInfo['imageLinks']?['thumbnail'] ?? '',
 
-      price: 39.99,
+      price: (response['saleInfo']?['retailPrice']?['amount'] ?? 0),
+      currencyCode: response['saleInfo']?['retailPrice']?['currencyCode'] ?? '',
       rate: 3,
 
       vendor: volumeInfo['publisher'] ?? '',
       puplisher: volumeInfo['publisher'] ?? '',
 
+      subtitle: volumeInfo['subtitle'] ?? '',
       description: volumeInfo['description'] ?? '',
     );
   }

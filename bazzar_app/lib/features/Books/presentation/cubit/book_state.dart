@@ -11,6 +11,11 @@ final class BookSuccess extends BookState {
   BookSuccess(this.books);
 }
 
+final class AllBooksSuccess extends BookState {
+  final List<BookModel> allBooks;
+  AllBooksSuccess(this.allBooks);
+}
+
 final class BookError extends BookState {
   final String message;
   BookError(this.message);

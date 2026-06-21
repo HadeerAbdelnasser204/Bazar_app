@@ -9,4 +9,8 @@ class BooksRepositoryImpl {
   Future<List<BookModel>> getBooks() {
     return booksRemoteDataSource.getBooks();
   }
+
+  Future<List<BookModel>> getAllBooks() {
+    return booksRemoteDataSource.getAllBooks();
+  }
 }
