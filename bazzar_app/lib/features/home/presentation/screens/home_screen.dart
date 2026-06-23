@@ -20,11 +20,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-final api = ApiService();
-final remote = BooksRemoteDataSource(api);
-final bookRepo = BooksRepositoryImpl(remote);
-final vendorRepo = VendorRepositoryImpl(VendorRemoteDataSourceImpl());
-final authorRepo = AuthorRepositoryImpl(AuthorRemoteDataSourceImp());
+// final api = ApiService();
+// final remote = BooksRemoteDataSource(api);
+// final bookRepo = BooksRepositoryImpl(remote);
+// final vendorRepo = VendorRepositoryImp(VendorRemoteDataSource());
+// final authorRepo = AuthorRepositoryImpl(AuthorRemoteDataSourceImp());
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -40,20 +40,21 @@ class HomeScreen extends StatelessWidget {
         iconOnPressed: () => context.push(AppRoutes.notificationScreen),
       ),
 
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => BookCubit(bookRepo)..fetchBooks()),
+      // body: MultiBlocProvider(
+      //   providers: [
+      //     BlocProvider(create: (context) => BookCubit(bookRepo)..fetchBooks()),
 
-          BlocProvider(
-            create: (context) => VendorCubit(vendorRepo)..fetchVendors(),
-          ),
+      //     BlocProvider(
+      //       create: (context) => VendorCubit(vendorRepo)..fetchVendors(),
+      //     ),
 
-          BlocProvider(
-            create: (context) => AuthorCubit(authorRepo)..fetchAuthors(),
-          ),
-        ],
-        child: HomeBody(),
-      ),
+      //     BlocProvider(
+      //       create: (context) => AuthorCubit(authorRepo)..fetchAuthors(),
+      //     ),
+      //   ],
+      //   child: HomeBody(),
+      // ),
+      body: HomeBody(),
       bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 0),
     );
   }
