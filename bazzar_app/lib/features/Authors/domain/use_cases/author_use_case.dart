@@ -7,6 +7,6 @@ class AuthorUseCase {
   AuthorUseCase(this.repository);
 
   Future<List<AuthorModel>> call() async {
-    return await repository.getAuthor();
+    return await repository.getAuthors();
   }
 }

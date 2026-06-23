@@ -5,7 +5,7 @@ import 'package:bazzar_app/features/Vendors/presentation/widgets/vendorBody.dart
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
 import 'package:flutter/material.dart';
 
-final remote = VendorRemoteDataSourceImpl();
+final remote = VendorRemoteDataSource();
 final repo = VendorRepositoryImpl(remote);
 
 class VendorsScreen extends StatelessWidget {

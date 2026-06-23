@@ -1,3 +1,4 @@
+import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
@@ -128,7 +129,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.bookScreen,
       builder: (context, state) => BlocProvider(
-        create: (_) => BookCubit(bookRepo)..fetchAllBooks(),
+        create: (_) => sl<BookCubit>()..fetchAllBooks(),
         child: const BooksScreen(),
       ),
     ),
@@ -140,16 +141,16 @@ final GoRouter router = GoRouter(
       path: AppRoutes.authorScreen,
       builder: (context, state) => const AuthorsScreen(),
     ),
+
     GoRoute(
       path: AppRoutes.vendorScreen,
       builder: (context, state) {
         return BlocProvider(
-          create: (_) => VendorCubit(vendorRepo)..fetchVendors(),
+          create: (_) => sl<VendorCubit>()..fetchVendors(),
           child: const VendorsScreen(),
         );
       },
     ),
-
     GoRoute(
       path: AppRoutes.authorDetailsScreen,
       builder: (context, state) {
