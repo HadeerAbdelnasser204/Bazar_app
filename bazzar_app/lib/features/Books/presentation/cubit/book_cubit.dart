@@ -1,11 +1,13 @@
-import 'package:bazzar_app/features/Books/domain/use_cases/book_use_case.dart';
+import 'package:bazzar_app/features/Books/domain/use_cases/get_all_books_use_case.dart';
+import 'package:bazzar_app/features/Books/domain/use_cases/get_book_use_case.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_state.dart';
 import 'package:bloc/bloc.dart';
 
 class BookCubit extends Cubit<BookState> {
-  final BookUseCase bookUseCase;
+  final GetBookUseCase bookUseCase;
+  final GetAllBooksUseCase allBooksUseCase;
 
-  BookCubit(this.bookUseCase) : super(BookInitial());
+  BookCubit(this.bookUseCase, this.allBooksUseCase) : super(BookInitial());
 
   Future<void> fetchBooks() async {
     emit(BookLoading());
@@ -20,7 +22,7 @@ class BookCubit extends Cubit<BookState> {
   Future<void> fetchAllBooks() async {
     emit(BookLoading());
     try {
-      final books = await bookUseCase.getAllBooks();
+      final books = await allBooksUseCase();
       emit(AllBooksSuccess(books));
     } catch (e) {
       emit(BookError(e.toString()));

@@ -1,9 +1,11 @@
+import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/core/routes/app_routes.dart' as AppRoutes;
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
+  setupGetIt();
   runApp(const MyApp());
 }
 

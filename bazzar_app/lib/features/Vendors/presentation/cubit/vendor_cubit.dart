@@ -1,9 +1,9 @@
-import 'package:bazzar_app/features/Vendors/domain/use_cases/vendor_use_case.dart';
+import 'package:bazzar_app/features/Vendors/domain/use_cases/get_vendor_use_case.dart';
 import 'package:bazzar_app/features/Vendors/presentation/cubit/vendor_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VendorCubit extends Cubit<VendorState> {
-  final VendorUseCase vendorUseCase;
+  final GetVendorUseCase vendorUseCase;
   VendorCubit(this.vendorUseCase) : super(VendorInitial());
 
   Future<void> fetchVendors() async {
