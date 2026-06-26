@@ -1,5 +1,5 @@
 import 'package:bazzar_app/core/constants/app_spacing.dart';
-import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
+import 'package:bazzar_app/features/Authors/data/models/author_model_api.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class AuthorDetailsBody extends StatelessWidget {
     required this.iconSize,
   });
 
-  final AuthorModel author;
+  final AuthorModelApi author;
   final double iconSize;
 
   @override
@@ -26,7 +26,7 @@ class AuthorDetailsBody extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 55,
-                    backgroundImage: AssetImage(author.image),
+                    backgroundImage: AssetImage(author.image!),
                   ),
                   AppSpacing.h10,
 
@@ -60,7 +60,7 @@ class AuthorDetailsBody extends StatelessWidget {
           AppSpacing.h10,
 
           Text(
-            author.description,
+            author.description!,
             style: const TextStyle(fontSize: 16, color: Colors.grey),
           ),
           AppSpacing.h20,

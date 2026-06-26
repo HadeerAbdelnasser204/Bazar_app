@@ -2,7 +2,6 @@ import 'package:bazzar_app/core/api/api_service.dart';
 import 'package:bazzar_app/features/Authors/data/data_sources/author_remote_data_source.dart';
 import 'package:bazzar_app/features/Authors/data/repositories/author_repository_impl.dart';
 import 'package:bazzar_app/features/Authors/domain/repositories/author_repository.dart';
-import 'package:bazzar_app/features/Authors/domain/use_cases/get_author_use_case.dart';
 import 'package:bazzar_app/features/Authors/presentation/cubit/author_cubit.dart';
 
 import 'package:bazzar_app/features/Books/data/data_sources/books_remote_data_source.dart';
@@ -40,12 +39,9 @@ void setupGetIt() {
   //========================Author=======================
 
   sl.registerLazySingleton<AuthorRemoteDataSource>(
-    () => AuthorRemoteDataSource(),
+    () => AuthorRemoteDataSource(apiService: sl<ApiService>()),
   );
-  sl.registerLazySingleton<AuthorRepository>(
-    () => AuthorRepositoryImpl(sl<AuthorRemoteDataSource>()),
-  );
-  sl.registerLazySingleton<GetAuthorUseCase>(() => GetAuthorUseCase(sl()));
+  sl.registerLazySingleton<AuthorRepository>(() => AuthorRepositoryImpl(sl()));
 
   sl.registerFactory<AuthorCubit>(() => AuthorCubit(sl()));
 

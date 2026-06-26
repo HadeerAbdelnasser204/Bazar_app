@@ -1,5 +1,4 @@
 import 'package:bazzar_app/core/utils/app_assets.dart';
-import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 
 class AuthorModel {
   final String name;

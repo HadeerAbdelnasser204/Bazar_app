@@ -1,5 +1,7 @@
 import 'package:bazzar_app/core/theme/app_colors.dart';
+import 'package:bazzar_app/features/Authors/presentation/cubit/author_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesTabs extends StatefulWidget {
   const CategoriesTabs({super.key, required this.categories});
@@ -26,6 +28,9 @@ class _CategoriesTabsState extends State<CategoriesTabs> {
               setState(() {
                 selectedIndex = index;
               });
+              context.read<AuthorCubit>().fetchAuthors(
+                widget.categories[selectedIndex],
+              );
             },
 
             child: Padding(
