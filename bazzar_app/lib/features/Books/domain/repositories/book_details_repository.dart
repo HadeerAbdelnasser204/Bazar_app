@@ -4,4 +4,6 @@ abstract class BooksRepository {
   Future<List<BookModel>> getBooks();
 
   Future<List<BookModel>> getAllBooks();
+
+  Future<List<BookModel>> getBooksByCategory(String subject);
 }

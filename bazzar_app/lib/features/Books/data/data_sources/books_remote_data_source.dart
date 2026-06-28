@@ -27,7 +27,7 @@ class BooksRemoteDataSource {
     final response = await apiService.get(
       endPoint: ApiEndpoints.getBooks,
       queryParameters: {
-        'q': 'f',
+        'q': 'a',
         'maxResults': '40',
         'key': ApiConstants.apiKey,
       },
@@ -36,5 +36,20 @@ class BooksRemoteDataSource {
     return (response['items'] as List)
         .map((e) => BookModel.fromJson(e))
         .toList();
+  }
+
+  Future<List<BookModel>> getBooksByCategory(String subject) async {
+    final response = await apiService.get(
+      endPoint: ApiEndpoints.getBooks,
+      queryParameters: {
+        'q': subject == "All" ? "a" : "subject:$subject",
+        'key': ApiConstants.apiKey,
+        'maxResults': subject == "All" ? 40 : 20,
+      },
+    );
+
+    final items = response['items'] as List? ?? [];
+
+    return items.map((e) => BookModel.fromJson(e)).toList();
   }
 }

@@ -20,15 +20,15 @@ class AuthorBody extends StatelessWidget {
             subtitle: "Authors",
           ),
           SizedBox(height: 20),
-          CategoriesTabs(
-            categories: [
-              "All",
-              "Poets",
-              "Playwrights",
-              "Novelists",
-              "Journalists",
-            ],
-          ),
+          // CategoriesTabs(
+          //   categories: [
+          //     "All",
+          //     "Poets",
+          //     "Playwrights",
+          //     "Novelists",
+          //     "Journalists",
+          //   ],
+          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(dummyAuthors.length, (index) {

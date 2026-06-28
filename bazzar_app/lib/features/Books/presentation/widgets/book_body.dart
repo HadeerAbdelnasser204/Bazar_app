@@ -2,6 +2,8 @@ import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_state.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/book_widget.dart';
+import 'package:bazzar_app/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:bazzar_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/categories_tabs.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/page_description_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,34 +16,41 @@ class BooksBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
-      child: BlocBuilder<BookCubit, BookState>(
-        builder: (context, state) {
-          if (state is BookLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: AppColors.grey500),
-            );
-          }
+      child: ListView(
+        children: [
+          const PageDescriptionWidget(
+            description: "Our Books",
+            subtitle: "Books",
+          ),
 
-          if (state is AllBooksSuccess) {
-            final categories = [
-              'All',
-              ...state.allBooks.expand((book) => book.categories).toSet(),
-            ];
+          const SizedBox(height: 15),
 
-            return ListView(
-              children: [
-                const PageDescriptionWidget(
-                  description: "Our Books",
-                  subtitle: "Books",
-                ),
+          BlocBuilder<CategoryCubit, CategoryState>(
+            builder: (context, state) {
+              if (state is CategorySuccess) {
+                return CategoriesTabs(
+                  categories: state.categories,
+                  selectedCategory: state.selectedCategory,
+                  onCategorySelected: (category) {
+                    context.read<CategoryCubit>().changeCategory(category);
+                  },
+                );
+              }
+              return SizedBox();
+            },
+          ),
 
-                const SizedBox(height: 15),
+          const SizedBox(height: 15),
 
-                CategoriesTabs(categories: categories),
-
-                const SizedBox(height: 15),
-
-                GridView.builder(
+          BlocBuilder<BookCubit, BookState>(
+            builder: (context, state) {
+              if (state is BookLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(color: AppColors.grey500),
+                );
+              }
+              if (state is AllBooksSuccess) {
+                return GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -54,22 +63,21 @@ class BooksBody extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return BookWidget(book: state.allBooks[index]);
                   },
-                ),
-              ],
-            );
-          }
+                );
+              }
+              if (state is BookError) {
+                return Center(
+                  child: Text(
+                    state.message,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
 
-          if (state is BookError) {
-            return Center(
-              child: Text(
-                state.message,
-                style: const TextStyle(color: Colors.red),
-              ),
-            );
-          }
-
-          return const SizedBox();
-        },
+              return const SizedBox();
+            },
+          ),
+        ],
       ),
     );
   }

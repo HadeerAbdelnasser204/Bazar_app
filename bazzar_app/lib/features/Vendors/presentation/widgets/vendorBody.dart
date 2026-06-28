@@ -23,15 +23,15 @@ class VendorBody extends StatelessWidget {
           ),
 
           SizedBox(height: 15),
-          CategoriesTabs(
-            categories: [
-              "All",
-              "Books",
-              "Poems",
-              "Special for you",
-              "Stationery",
-            ],
-          ),
+          // CategoriesTabs(
+          //   categories: [
+          //     "All",
+          //     "Books",
+          //     "Poems",
+          //     "Special for you",
+          //     "Stationery",
+          //   ],
+          // ),
           BlocBuilder<VendorCubit, VendorState>(
             builder: (context, state) {
               if (state is VendorLoading) {
