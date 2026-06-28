@@ -1,5 +1,6 @@
 import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
+import 'package:bazzar_app/features/Authors/data/models/author_model_api.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
@@ -154,7 +155,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.authorDetailsScreen,
       builder: (context, state) {
-        final author = state.extra as AuthorModel;
+        final author = state.extra as AuthorModelApi;
         return AuthorDetails(author: author);
       },
     ),
