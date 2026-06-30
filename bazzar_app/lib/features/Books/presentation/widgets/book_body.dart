@@ -33,10 +33,14 @@ class BooksBody extends StatelessWidget {
                   selectedCategory: state.selectedCategory,
                   onCategorySelected: (category) {
                     context.read<CategoryCubit>().changeCategory(category);
+
+                    context.read<BookCubit>().fetchBooksByCategory(category);
+                    print("CATEGORY SENT: $category");
                   },
                 );
               }
-              return SizedBox();
+
+              return const SizedBox();
             },
           ),
 
@@ -49,19 +53,20 @@ class BooksBody extends StatelessWidget {
                   child: CircularProgressIndicator(color: AppColors.grey500),
                 );
               }
-              if (state is AllBooksSuccess) {
+
+              if (state is BookLoaded) {
                 return GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
+                  itemCount: state.books.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
                     childAspectRatio: 0.6,
                   ),
-                  itemCount: state.allBooks.length,
                   itemBuilder: (context, index) {
-                    return BookWidget(book: state.allBooks[index]);
+                    return BookWidget(book: state.books[index]);
                   },
                 );
               }
@@ -73,8 +78,7 @@ class BooksBody extends StatelessWidget {
                   ),
                 );
               }
-
-              return const SizedBox();
+              return SizedBox();
             },
           ),
         ],

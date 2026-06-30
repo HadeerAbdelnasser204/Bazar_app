@@ -6,14 +6,9 @@ final class BookInitial extends BookState {}
 
 final class BookLoading extends BookState {}
 
-final class BookSuccess extends BookState {
+final class BookLoaded extends BookState {
   final List<BookModel> books;
-  BookSuccess(this.books);
-}
-
-final class AllBooksSuccess extends BookState {
-  final List<BookModel> allBooks;
-  AllBooksSuccess(this.allBooks);
+  BookLoaded(this.books);
 }
 
 final class BookError extends BookState {

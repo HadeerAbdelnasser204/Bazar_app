@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
+
   runApp(const MyApp());
 }
 

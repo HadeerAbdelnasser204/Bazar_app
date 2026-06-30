@@ -2,6 +2,7 @@ import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
+import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
 import 'package:bazzar_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:bazzar_app/features/categories/presentation/widgets/category_body.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
@@ -25,8 +26,14 @@ class CategoriesScreen extends StatelessWidget {
           context.go(AppRoutes.searchScreen);
         },
       ),
-      body: BlocProvider(
-        create: (context) => sl<CategoryCubit>()..loadInitialData(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => sl<BookCubit>()..fetchAllBooks()),
+
+          BlocProvider(
+            create: (context) => sl<CategoryCubit>()..loadInitialData(),
+          ),
+        ],
         child: CategoryBody(),
       ),
       bottomNavigationBar: BottomNavigationBarWidget(currentIndex: 1),

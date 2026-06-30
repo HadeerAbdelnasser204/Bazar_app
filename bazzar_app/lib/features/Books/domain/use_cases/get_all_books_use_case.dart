@@ -6,7 +6,7 @@ class GetAllBooksUseCase {
 
   GetAllBooksUseCase(this.repository);
 
-  Future<List<BookModel>> call(String category) async {
+  Future<List<BookModel>> call() async {
     return await repository.getAllBooks();
   }
 }

@@ -42,7 +42,7 @@ class BooksRemoteDataSource {
     final response = await apiService.get(
       endPoint: ApiEndpoints.getBooks,
       queryParameters: {
-        'q': subject == "All" ? "a" : "subject:$subject",
+        'q': subject == "All" ? "flutter" : "subject:$subject",
         'key': ApiConstants.apiKey,
         'maxResults': subject == "All" ? 40 : 20,
       },
