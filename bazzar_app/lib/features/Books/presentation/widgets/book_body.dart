@@ -30,7 +30,6 @@ class BooksBody extends StatelessWidget {
               if (state is CategorySuccess) {
                 return CategoriesTabs(
                   categories: state.categories,
-                  selectedCategory: state.selectedCategory,
                   onCategorySelected: (category) {
                     context.read<CategoryCubit>().changeCategory(category);
 

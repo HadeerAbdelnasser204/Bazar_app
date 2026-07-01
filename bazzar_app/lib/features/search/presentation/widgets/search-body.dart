@@ -1,5 +1,4 @@
 import 'package:bazzar_app/core/constants/app_spacing.dart';
-import 'package:bazzar_app/features/categories/data/data_sources/dummy_search_history.dart';
 import 'package:bazzar_app/features/search/presentation/cubit/search_cubit.dart';
 import 'package:bazzar_app/features/search/presentation/widgets/search_result_builder.dart';
 import 'package:bazzar_app/features/search/presentation/widgets/search_text_field_widget.dart';

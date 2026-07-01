@@ -28,7 +28,6 @@ class CategoryBody extends StatelessWidget {
               children: [
                 CategoriesTabs(
                   categories: categoryState.categories,
-                  selectedCategory: categoryState.selectedCategory,
                   onCategorySelected: (category) {
                     context.read<CategoryCubit>().changeCategory(category);
 
