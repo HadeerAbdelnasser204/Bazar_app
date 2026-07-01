@@ -37,7 +37,12 @@ class BooksBody extends StatelessWidget {
 
                 const SizedBox(height: 15),
 
-                CategoriesTabs(categories: categories),
+                CategoriesTabs(
+                  categories: categories,
+                  onCategorySelected: (category) {
+                    //context.push(AppRoutes.homeScreen, extra: category);
+                  },
+                ),
 
                 const SizedBox(height: 15),
 

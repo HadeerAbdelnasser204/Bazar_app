@@ -31,6 +31,9 @@ class CategoriesScreen extends StatelessWidget {
         child: ListView(
           children: [
             CategoriesTabs(
+              onCategorySelected: (category) {
+                //context.push(AppRoutes.homeScreen, extra: category);
+              },
               categories: ["All", "Novels", "Self Love", "Science", "Romantic"],
             ),
             AppSpacing.h15,

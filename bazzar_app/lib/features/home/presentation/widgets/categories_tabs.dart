@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesTabs extends StatefulWidget {
-  const CategoriesTabs({super.key, required this.categories});
+  const CategoriesTabs({
+    super.key,
+    required this.categories,
+    required this.onCategorySelected,
+  });
   final List<String> categories;
+  final void Function(String) onCategorySelected;
 
   @override
   State<CategoriesTabs> createState() => _CategoriesTabsState();
@@ -28,9 +33,7 @@ class _CategoriesTabsState extends State<CategoriesTabs> {
               setState(() {
                 selectedIndex = index;
               });
-              context.read<AuthorCubit>().fetchAuthors(
-                widget.categories[selectedIndex],
-              );
+              widget.onCategorySelected(widget.categories[selectedIndex]);
             },
 
             child: Padding(

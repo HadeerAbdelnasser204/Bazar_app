@@ -25,6 +25,9 @@ class AuthorBody extends StatelessWidget {
           ),
           SizedBox(height: 20),
           CategoriesTabs(
+            onCategorySelected: (category) {
+              context.read<AuthorCubit>().fetchAuthors(category);
+            },
             categories: [
               "All",
               "Poets",
