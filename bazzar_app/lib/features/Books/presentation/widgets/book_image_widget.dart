@@ -23,9 +23,15 @@ class BookImageWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(radius ?? 15),
       child: Image.network(
         imageName,
-        fit: BoxFit.contain,
-        width: width,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: Colors.grey[300],
+            child: const Icon(Icons.broken_image),
+          );
+        },
         height: height,
+        width: width,
       ),
     );
   }

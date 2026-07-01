@@ -18,7 +18,7 @@ class AuthorsScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.white,
       body: BlocProvider(
-        create: (context) => sl<AuthorCubit>(),
+        create: (context) => sl<AuthorCubit>()..fetchAuthors("All"),
         child: AuthorBody(),
       ),
     );

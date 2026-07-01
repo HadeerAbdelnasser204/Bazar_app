@@ -1,8 +1,11 @@
+import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/home/presentation/widgets/appBar_widget.dart';
+import 'package:bazzar_app/features/search/presentation/cubit/search_cubit.dart';
 import 'package:bazzar_app/features/search/presentation/widgets/search-body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -24,7 +27,10 @@ class _SearchScreenState extends State<SearchScreen> {
           context.go(AppRoutes.categoryScreen);
         },
       ),
-      body: SearchBody(),
+      body: BlocProvider(
+        create: (context) => sl<SearchCubit>()..loadHistory(),
+        child: SearchBody(),
+      ),
     );
   }
 }

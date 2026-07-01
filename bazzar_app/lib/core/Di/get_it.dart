@@ -8,6 +8,7 @@ import 'package:bazzar_app/features/Books/data/data_sources/books_remote_data_so
 import 'package:bazzar_app/features/Books/data/repositories/books_repository_impl.dart';
 import 'package:bazzar_app/features/Books/domain/repositories/book_details_repository.dart';
 import 'package:bazzar_app/features/Books/domain/use_cases/get_all_books_use_case.dart';
+import 'package:bazzar_app/features/Books/domain/use_cases/get_book_categories_use_case.dart';
 import 'package:bazzar_app/features/Books/domain/use_cases/get_book_use_case.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
 import 'package:bazzar_app/features/Vendors/data/data_sources/vendor_remote_data_source.dart';
@@ -15,10 +16,26 @@ import 'package:bazzar_app/features/Vendors/data/repositories/vendor_repository_
 import 'package:bazzar_app/features/Vendors/domain/repositories/vendor_repository.dart';
 import 'package:bazzar_app/features/Vendors/domain/use_cases/get_vendor_use_case.dart';
 import 'package:bazzar_app/features/Vendors/presentation/cubit/vendor_cubit.dart';
+import 'package:bazzar_app/features/categories/data/repositories/categories_repository_impl.dart';
+import 'package:bazzar_app/features/categories/domain/repositories/categories_repository.dart';
+import 'package:bazzar_app/features/categories/domain/use_cases/get_categories_use_case.dart';
+import 'package:bazzar_app/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:bazzar_app/features/search/data/data_sources/history_local_data_source.dart';
+import 'package:bazzar_app/features/search/data/data_sources/search_remote_data_source.dart';
+import 'package:bazzar_app/features/search/data/repositories/history_repository_impl.dart';
+import 'package:bazzar_app/features/search/data/repositories/search_repository_impl.dart';
+import 'package:bazzar_app/features/search/domain/repositories/history_repository.dart';
+import 'package:bazzar_app/features/search/domain/repositories/search_repository.dart';
+import 'package:bazzar_app/features/search/domain/use_cases/get_search_history_use_case.dart';
+import 'package:bazzar_app/features/search/domain/use_cases/save_search_history_use_case.dart';
+import 'package:bazzar_app/features/search/domain/use_cases/search_books_by_title_use_case.dart';
+import 'package:bazzar_app/features/search/domain/use_cases/search_books_use_case.dart';
+import 'package:bazzar_app/features/search/presentation/cubit/search_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
-void setupGetIt() {
+Future<void> setupGetIt() async {
   //========================Book=======================
   sl.registerLazySingleton<ApiService>(() => ApiService());
 
@@ -34,7 +51,9 @@ void setupGetIt() {
 
   sl.registerLazySingleton(() => GetAllBooksUseCase(sl()));
 
-  sl.registerFactory<BookCubit>(() => BookCubit(sl(), sl()));
+  sl.registerLazySingleton<GetBooksByCategory>(() => GetBooksByCategory(sl()));
+
+  sl.registerFactory<BookCubit>(() => BookCubit(sl(), sl(), sl()));
 
   //========================Author=======================
 
@@ -56,4 +75,45 @@ void setupGetIt() {
   sl.registerLazySingleton<GetVendorUseCase>(() => GetVendorUseCase(sl()));
 
   sl.registerFactory<VendorCubit>(() => VendorCubit(sl()));
+
+  //========================Category=======================//
+
+  sl.registerLazySingleton<CategoriesRepository>(
+    () => CategoriesRepositoryImpl(sl()),
+  );
+
+  sl.registerLazySingleton<GetCategoriesUseCase>(
+    () => GetCategoriesUseCase(sl()),
+  );
+
+  sl.registerFactory<CategoryCubit>(() => CategoryCubit(sl()));
+
+  //========================Search=======================//
+  final prefs = await SharedPreferences.getInstance();
+
+  sl.registerSingleton<SharedPreferences>(prefs);
+
+  sl.registerLazySingleton<HistoryLocalDataSource>(
+    () => HistoryLocalDataSource(sl<SharedPreferences>()),
+  );
+
+  sl.registerLazySingleton<SearchRemoteDataSource>(
+    () => SearchRemoteDataSource(sl()),
+  );
+
+  sl.registerLazySingleton<HistoryRepository>(
+    () => HistoryRepositoryImpl(sl<HistoryLocalDataSource>()),
+  );
+
+  sl.registerLazySingleton<SearchRepository>(
+    () => SearchRepositoryImpl(sl<SearchRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton(() => SearchBooksUseCase(sl()));
+  sl.registerLazySingleton(() => SearchBooksByTitleUseCase(sl()));
+
+  sl.registerLazySingleton(() => GetSearchHistoryUseCase(sl()));
+  sl.registerLazySingleton(() => SaveSearchUseCase(sl()));
+
+  sl.registerFactory<SearchCubit>(() => SearchCubit(sl(), sl(), sl(), sl()));
 }

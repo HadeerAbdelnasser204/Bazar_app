@@ -35,7 +35,7 @@ class HomeBody extends StatelessWidget {
                     child: CircularProgressIndicator(color: AppColors.grey500),
                   );
                 }
-                if (state is BookSuccess) {
+                if (state is BookLoaded) {
                   return SizedBox(
                     height: 250,
                     child: ListView.builder(
