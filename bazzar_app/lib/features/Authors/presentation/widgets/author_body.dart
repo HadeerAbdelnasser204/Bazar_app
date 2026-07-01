@@ -48,23 +48,47 @@ class AuthorBody extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final author = state.authors[index];
 
-                    return ListTile(
+                    return InkWell(
                       onTap: () {
                         context.push(
                           AppRoutes.authorDetailsScreen,
                           extra: state.authors[index],
                         );
                       },
-                      leading: CircleAvatar(
-                        backgroundImage: author.image != null
-                            ? NetworkImage(author.image!)
-                            : null,
-                        child: author.image == null
-                            ? const Icon(Icons.person)
-                            : null,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: author.image != null
+                                  ? NetworkImage(author.image!)
+                                  : null,
+                              child: author.image == null
+                                  ? const Icon(Icons.person)
+                                  : null,
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(author.name, style: AppTextStyles.h5),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    author.description ?? '',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      title: Text(author.name, style: AppTextStyles.h5),
-                      subtitle: Text(author.description ?? ''),
                     );
                   },
                 );
