@@ -50,4 +50,24 @@ class BookModel {
       description: volumeInfo['description'] ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'volumeInfo': {
+        'title': title,
+        'authors': authors,
+        'categories': categories,
+        'imageLinks': {'thumbnail': image},
+        'publisher': puplisher,
+        'subtitle': subtitle,
+        'description': description,
+      },
+      'saleInfo': {
+        'retailPrice': {'amount': price, 'currencyCode': currencyCode},
+      },
+      'rate': rate,
+      'vendor': vendor,
+    };
+  }
 }

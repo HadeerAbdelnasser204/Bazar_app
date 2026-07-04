@@ -1,5 +1,4 @@
 import 'package:bazzar_app/core/Di/get_it.dart';
-import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model_api.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/authors_screen.dart';
@@ -81,7 +80,7 @@ class AppRoutes {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.homeScreen,
+  initialLocation: AppRoutes.splashScreen,
   routes: [
     GoRoute(
       path: AppRoutes.splashScreen,

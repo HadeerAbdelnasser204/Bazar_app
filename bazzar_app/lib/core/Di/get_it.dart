@@ -20,6 +20,13 @@ import 'package:bazzar_app/features/categories/data/repositories/categories_repo
 import 'package:bazzar_app/features/categories/domain/repositories/categories_repository.dart';
 import 'package:bazzar_app/features/categories/domain/use_cases/get_categories_use_case.dart';
 import 'package:bazzar_app/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:bazzar_app/features/favorites/data/data_sources/favorites_remote_data_source.dart';
+import 'package:bazzar_app/features/favorites/data/repositories/favorites_repository_impl.dart';
+import 'package:bazzar_app/features/favorites/domain/repositories/favorites_repository.dart';
+import 'package:bazzar_app/features/favorites/domain/use_cases/add_favorite_use_case.dart';
+import 'package:bazzar_app/features/favorites/domain/use_cases/get_favorites_use_case.dart';
+import 'package:bazzar_app/features/favorites/domain/use_cases/remove_favorite_use_case.dart';
+import 'package:bazzar_app/features/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:bazzar_app/features/search/data/data_sources/history_local_data_source.dart';
 import 'package:bazzar_app/features/search/data/data_sources/search_remote_data_source.dart';
 import 'package:bazzar_app/features/search/data/repositories/history_repository_impl.dart';
@@ -116,4 +123,18 @@ Future<void> setupGetIt() async {
   sl.registerLazySingleton(() => SaveSearchUseCase(sl()));
 
   sl.registerFactory<SearchCubit>(() => SearchCubit(sl(), sl(), sl(), sl()));
+
+  ///////////////////////////Favorites//////////////////////////
+  sl.registerLazySingleton<FavoriteRemoteDataSource>(
+    () => FavoriteRemoteDataSource(),
+  );
+
+  sl.registerLazySingleton<FavoritesRepository>(
+    () => FavoritesRepositoryImpl(sl<FavoriteRemoteDataSource>()),
+  );
+  sl.registerLazySingleton(() => AddFavoriteUseCase(sl()));
+  sl.registerLazySingleton(() => GetFavoritesUseCase(sl()));
+  sl.registerLazySingleton(() => RemoveFavoriteUseCase(sl()));
+
+  sl.registerFactory<FavoritesCubit>(() => FavoritesCubit(sl(), sl(), sl()));
 }
