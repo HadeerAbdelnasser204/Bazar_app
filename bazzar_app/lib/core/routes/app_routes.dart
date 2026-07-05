@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_underscores
+
 import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/features/Authors/data/models/author_model_api.dart';
 import 'package:bazzar_app/features/Authors/presentation/screens/author_details.dart';
@@ -6,12 +8,12 @@ import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
 import 'package:bazzar_app/features/Books/presentation/screens/books_screen.dart';
 import 'package:bazzar_app/features/Vendors/presentation/cubit/vendor_cubit.dart';
 import 'package:bazzar_app/features/Vendors/presentation/screens/vendors_screen.dart';
+import 'package:bazzar_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/forget_password.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/new_password.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/password_changed_success_screen.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/register_screen.dart';
-import 'package:bazzar_app/features/auth/presentation/widgets/verify_flow.dart';
 import 'package:bazzar_app/features/auth/presentation/screens/verify_screen.dart';
 
 import 'package:bazzar_app/features/home/presentation/screens/home_screen.dart';
@@ -30,6 +32,7 @@ import 'package:bazzar_app/features/notifications/presentation/screens/notificat
 import 'package:bazzar_app/features/categories/presentation/screens/categories_screen.dart';
 import 'package:bazzar_app/features/favorites/presentation/screens/favorites_screen.dart';
 import 'package:bazzar_app/features/order/presentation/screens/order_history_screen.dart';
+import 'package:bazzar_app/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/account_screen.dart';
 import 'package:bazzar_app/features/profile/presentation/screens/profile_screen.dart';
 import 'package:bazzar_app/features/search/presentation/screens/search_screen.dart';
@@ -94,18 +97,35 @@ final GoRouter router = GoRouter(
     // ------------ Auth ------------ //
     GoRoute(
       path: AppRoutes.loginScreen,
-      builder: (context, state) => const LoginScreen(),
+      builder: (context, state) => BlocProvider(
+        create: (_) => sl<AuthCubit>(),
+        child: const LoginScreen(),
+      ),
     ),
     GoRoute(
       path: AppRoutes.signUpScreen,
-      builder: (context, state) => const SignUpScreen(),
+      builder: (context, state) {
+        return BlocProvider(
+          create: (_) => sl<AuthCubit>(),
+          child: const SignUpScreen(),
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.verifyScreen,
       builder: (context, state) {
-        final email = state.uri.queryParameters['email'];
-        final flow = VerifyFlow.fromQuery(state.uri.queryParameters['flow']);
-        return VerifyScreen(email: email, flow: flow);
+        final data = state.extra as Map<String, String>;
+
+        final name = data['name']!;
+        final email = data['email']!;
+
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<AuthCubit>()),
+            BlocProvider(create: (_) => sl<ProfileCubit>()),
+          ],
+          child: VerifyScreen(name: name, email: email),
+        );
       },
     ),
     GoRoute(

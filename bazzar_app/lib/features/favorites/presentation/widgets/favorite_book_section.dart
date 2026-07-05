@@ -3,7 +3,9 @@ import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/book_image_widget.dart';
+import 'package:bazzar_app/features/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class FavoriteBookSection extends StatelessWidget {
@@ -51,13 +53,12 @@ class FavoriteBookSection extends StatelessWidget {
         ),
 
         IconButton(
-          onPressed: () {},
+          onPressed: () async {
+            await context.read<FavoritesCubit>().toggleFavorite(book);
+          },
           icon: SvgPicture.asset(
             AppAssets.loveIcon,
-            colorFilter: const ColorFilter.mode(
-              AppColors.primary500,
-              BlendMode.srcIn,
-            ),
+            colorFilter: const ColorFilter.mode(AppColors.red, BlendMode.srcIn),
           ),
         ),
       ],

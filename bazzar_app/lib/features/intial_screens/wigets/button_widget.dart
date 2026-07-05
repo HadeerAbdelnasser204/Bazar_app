@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 class BuildButtons extends StatelessWidget {
@@ -29,9 +32,14 @@ class BuildButtons extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (isLastPage) {
-                Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+                // ✅ نخزن إن الـ onboarding اتعمل مرة واحدة
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('seenOnboarding', true);
+
+                // ✅ نروح login
+                context.go(AppRoutes.loginScreen);
               } else {
                 _pageController.nextPage(
                   duration: const Duration(milliseconds: 300),
@@ -57,10 +65,14 @@ class BuildButtons extends StatelessWidget {
 
         if (isLastPage) ...[
           SizedBox(height: 1.5.h),
+
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () {
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('seenOnboarding', true);
+
                 context.go(AppRoutes.loginScreen);
               },
               style: OutlinedButton.styleFrom(

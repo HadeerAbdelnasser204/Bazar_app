@@ -1,8 +1,10 @@
-import 'dart:async';
-import 'package:bazzar_app/core/routes/app_routes.dart';
+// ignore_for_file: use_build_context_synchronously, use_full_hex_values_for_flutter_colors
+
 import 'package:bazzar_app/core/theme/app_colors.dart';
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,15 +15,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  @override
   void initState() {
     super.initState();
+    _navigate();
+  }
 
-    Future.delayed(const Duration(seconds: 2), () {
-      if (!mounted) return;
+  Future<void> _navigate() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
 
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
       context.go(AppRoutes.onboardingScreen);
-    });
+      return;
+    }
+
+    await user.reload();
+    final updatedUser = FirebaseAuth.instance.currentUser;
+
+    if (updatedUser != null && updatedUser.emailVerified) {
+      context.go(AppRoutes.homeScreen);
+    } else {
+      context.go(AppRoutes.loginScreen);
+    }
   }
 
   @override

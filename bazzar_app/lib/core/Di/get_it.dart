@@ -16,6 +16,15 @@ import 'package:bazzar_app/features/Vendors/data/repositories/vendor_repository_
 import 'package:bazzar_app/features/Vendors/domain/repositories/vendor_repository.dart';
 import 'package:bazzar_app/features/Vendors/domain/use_cases/get_vendor_use_case.dart';
 import 'package:bazzar_app/features/Vendors/presentation/cubit/vendor_cubit.dart';
+import 'package:bazzar_app/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:bazzar_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:bazzar_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:bazzar_app/features/auth/domain/use_cases/check_email_verification_use_case.dart';
+import 'package:bazzar_app/features/auth/domain/use_cases/login_use_case.dart';
+import 'package:bazzar_app/features/auth/domain/use_cases/logout_use_case.dart';
+import 'package:bazzar_app/features/auth/domain/use_cases/register_use_case.dart';
+import 'package:bazzar_app/features/auth/domain/use_cases/send_email_verification_use_case.dart';
+import 'package:bazzar_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bazzar_app/features/categories/data/repositories/categories_repository_impl.dart';
 import 'package:bazzar_app/features/categories/domain/repositories/categories_repository.dart';
 import 'package:bazzar_app/features/categories/domain/use_cases/get_categories_use_case.dart';
@@ -27,6 +36,13 @@ import 'package:bazzar_app/features/favorites/domain/use_cases/add_favorite_use_
 import 'package:bazzar_app/features/favorites/domain/use_cases/get_favorites_use_case.dart';
 import 'package:bazzar_app/features/favorites/domain/use_cases/remove_favorite_use_case.dart';
 import 'package:bazzar_app/features/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:bazzar_app/features/profile/data/data_sources/profile_remote_data_source.dart';
+import 'package:bazzar_app/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:bazzar_app/features/profile/domain/repositories/profile_repository.dart';
+import 'package:bazzar_app/features/profile/domain/use_cases/get_profile_use_case.dart';
+import 'package:bazzar_app/features/profile/domain/use_cases/save_profile_use_case.dart';
+import 'package:bazzar_app/features/profile/domain/use_cases/update_profile_use_case.dart';
+import 'package:bazzar_app/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bazzar_app/features/search/data/data_sources/history_local_data_source.dart';
 import 'package:bazzar_app/features/search/data/data_sources/search_remote_data_source.dart';
 import 'package:bazzar_app/features/search/data/repositories/history_repository_impl.dart';
@@ -43,6 +59,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 Future<void> setupGetIt() async {
+  //////////////////////Auth//////////////////////
+  ///
+  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSource());
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(sl<AuthRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(sl()));
+  sl.registerLazySingleton<LoginUseCase>(() => LoginUseCase(sl()));
+  sl.registerLazySingleton<LogoutUseCase>(() => LogoutUseCase(sl()));
+  sl.registerLazySingleton<SendEmailVerificationUseCase>(
+    () => SendEmailVerificationUseCase(sl()),
+  );
+  sl.registerLazySingleton<CheckEmailVerifiedUseCase>(
+    () => CheckEmailVerifiedUseCase(sl()),
+  );
+
+  sl.registerFactory<AuthCubit>(() => AuthCubit(sl(), sl(), sl(), sl(), sl()));
+
   //========================Book=======================
   sl.registerLazySingleton<ApiService>(() => ApiService());
 
@@ -137,4 +172,21 @@ Future<void> setupGetIt() async {
   sl.registerLazySingleton(() => RemoveFavoriteUseCase(sl()));
 
   sl.registerFactory<FavoritesCubit>(() => FavoritesCubit(sl(), sl(), sl()));
+
+  ////////////////////////profile//////////////////////////
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+    () => ProfileRemoteDataSource(),
+  );
+
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(sl<ProfileRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton<GetProfileUseCase>(() => GetProfileUseCase(sl()));
+  sl.registerLazySingleton<SaveProfileUseCase>(() => SaveProfileUseCase(sl()));
+  sl.registerLazySingleton<UpdateProfileUseCase>(
+    () => UpdateProfileUseCase(sl()),
+  );
+
+  sl.registerFactory<ProfileCubit>(() => ProfileCubit(sl(), sl(), sl()));
 }

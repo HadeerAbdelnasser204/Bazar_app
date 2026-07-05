@@ -1,10 +1,13 @@
+import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/core/constants/app_spacing.dart';
 import 'package:bazzar_app/core/routes/app_routes.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
+import 'package:bazzar_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bazzar_app/features/profile/presentation/widgets/logout_section.dart';
 import 'package:bazzar_app/features/profile/presentation/widgets/profile_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -35,7 +38,10 @@ class ProfileBody extends StatelessWidget {
                 showModalBottomSheet(
                   backgroundColor: Colors.white,
                   context: context,
-                  builder: (context) => LogoutSection(),
+                  builder: (context) => BlocProvider(
+                    create: (context) => sl<AuthCubit>(),
+                    child: LogoutSection(),
+                  ),
                 );
               },
               child: Text(
