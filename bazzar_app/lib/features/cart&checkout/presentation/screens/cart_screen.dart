@@ -41,9 +41,6 @@ class _CartScreenState extends State<CartScreen> {
         .toList();
   }
 
-  int get _cartItemCount =>
-      _items.fold<int>(0, (sum, item) => sum + item.quantity);
-
   void _updateQuantity(int index, int quantity) {
     setState(() => _items[index].quantity = quantity);
   }
