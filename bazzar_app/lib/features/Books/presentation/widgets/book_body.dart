@@ -34,7 +34,6 @@ class BooksBody extends StatelessWidget {
                     context.read<CategoryCubit>().changeCategory(category);
 
                     context.read<BookCubit>().fetchBooksByCategory(category);
-                    print("CATEGORY SENT: $category");
                   },
                 );
               }

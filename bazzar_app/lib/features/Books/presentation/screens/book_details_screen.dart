@@ -1,9 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:bazzar_app/core/Di/get_it.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/features/Books/data/models/book_model.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/quantity_cubit.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/book_details_model.dart';
+import 'package:bazzar_app/features/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,8 +27,13 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
       ),
 
-      child: BlocProvider(
-        create: (context) => QuantityCubit(widget.book.price),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => QuantityCubit(widget.book.price)),
+          BlocProvider(
+            create: (context) => sl<FavoritesCubit>()..loadFavorites(),
+          ),
+        ],
         child: BookDetailsModel(iconSize: 25, book: widget.book),
       ),
     );

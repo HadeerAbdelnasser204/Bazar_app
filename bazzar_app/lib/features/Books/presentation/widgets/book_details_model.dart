@@ -7,7 +7,10 @@ import 'package:bazzar_app/features/Books/presentation/widgets/custom_elevated_b
 import 'package:bazzar_app/features/Books/presentation/widgets/quantity_selector.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/rating_widget.dart';
 import 'package:bazzar_app/features/Books/presentation/widgets/show_model_line.dart';
+import 'package:bazzar_app/features/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:bazzar_app/features/favorites/presentation/cubit/favorites_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BookDetailsModel extends StatelessWidget {
@@ -57,13 +60,26 @@ class BookDetailsModel extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      AppAssets.loveIcon,
-                      width: 20,
-                      height: 20,
-                    ),
+                  BlocBuilder<FavoritesCubit, FavoritesState>(
+                    builder: (context, state) {
+                      final cubit = context.read<FavoritesCubit>();
+                      final isFav = cubit.isFavorite(book.id);
+
+                      return IconButton(
+                        onPressed: () {
+                          cubit.toggleFavorite(book);
+                        },
+                        icon: SvgPicture.asset(
+                          AppAssets.loveIcon,
+                          width: 20,
+                          height: 20,
+                          colorFilter: ColorFilter.mode(
+                            isFav ? AppColors.primary500 : AppColors.grey500,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

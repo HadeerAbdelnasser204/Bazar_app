@@ -11,6 +11,7 @@ import 'package:bazzar_app/features/Books/domain/use_cases/get_all_books_use_cas
 import 'package:bazzar_app/features/Books/domain/use_cases/get_book_categories_use_case.dart';
 import 'package:bazzar_app/features/Books/domain/use_cases/get_book_use_case.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
+import 'package:bazzar_app/features/Books/presentation/cubit/quantity_cubit.dart';
 import 'package:bazzar_app/features/Vendors/data/data_sources/vendor_remote_data_source.dart';
 import 'package:bazzar_app/features/Vendors/data/repositories/vendor_repository_impl.dart';
 import 'package:bazzar_app/features/Vendors/domain/repositories/vendor_repository.dart';
@@ -96,6 +97,8 @@ Future<void> setupGetIt() async {
   sl.registerLazySingleton<GetBooksByCategory>(() => GetBooksByCategory(sl()));
 
   sl.registerFactory<BookCubit>(() => BookCubit(sl(), sl(), sl()));
+
+  sl.registerFactory<QuantityCubit>(() => QuantityCubit(0));
 
   //========================Author=======================
 
