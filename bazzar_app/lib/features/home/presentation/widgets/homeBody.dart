@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:bazzar_app/core/theme/app_colors.dart';
-import 'package:bazzar_app/features/Authors/data/models/author_model.dart';
 import 'package:bazzar_app/features/Authors/presentation/cubit/author_cubit.dart';
 import 'package:bazzar_app/features/Authors/presentation/cubit/author_state.dart';
 import 'package:bazzar_app/features/Books/presentation/cubit/book_cubit.dart';
@@ -99,12 +98,12 @@ class HomeBody extends StatelessWidget {
                     child: ListView.builder(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      itemCount: dummyAuthors.length,
+                      itemCount: state.authors.length,
                       itemBuilder: (context, index) {
                         return HomeSectionWidget(
-                          image: dummyAuthors[index].image,
-                          description: dummyAuthors[index].name,
-                          role: dummyAuthors[index].role,
+                          image: state.authors[index].image!,
+                          description: state.authors[index].name,
+                          role: state.authors[index].role,
                           isCircle: true,
                         );
                       },

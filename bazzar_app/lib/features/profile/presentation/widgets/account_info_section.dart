@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:bazzar_app/core/constants/app_spacing.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
@@ -6,6 +8,7 @@ import 'package:bazzar_app/features/profile/data/models/profile_model.dart';
 import 'package:bazzar_app/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bazzar_app/features/profile/presentation/cubit/profile_state.dart';
 import 'package:bazzar_app/features/profile/presentation/widgets/account_text_field.dart';
+import 'package:bazzar_app/features/profile/presentation/widgets/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -64,7 +67,7 @@ class _AccountInfoSectionState extends State<AccountInfoSection> {
               AppSpacing.h40,
               CustomeButton(
                 text: "Save Changes",
-                onPressed: () {
+                onPressed: () async {
                   final profile = ProfileModel(
                     uid: state is ProfileLoaded ? state.profile.uid : '',
                     name: nameController.text,
@@ -76,7 +79,13 @@ class _AccountInfoSectionState extends State<AccountInfoSection> {
                         : '',
                   );
 
-                  context.read<ProfileCubit>().updateProfile(profile);
+                  await context.read<ProfileCubit>().updateProfile(profile);
+                  SnackBarHelper.show(
+                    context: context,
+                    message: "Profile updated successfully!",
+                    backgroundColor: AppColors.primary500,
+                    icon: Icons.check_circle_outline,
+                  );
                 },
                 buttonColor: AppColors.primary500,
                 textColor: Colors.white,

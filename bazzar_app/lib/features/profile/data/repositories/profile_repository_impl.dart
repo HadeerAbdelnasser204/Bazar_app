@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bazzar_app/features/profile/data/data_sources/profile_remote_data_source.dart';
 import 'package:bazzar_app/features/profile/data/models/profile_model.dart';
 import 'package:bazzar_app/features/profile/domain/repositories/profile_repository.dart';
@@ -20,5 +22,10 @@ class ProfileRepositoryImpl extends ProfileRepository {
   @override
   Future<void> updateProfile(ProfileModel profile) {
     return remoteDataSource.updateProfile(profile);
+  }
+
+  @override
+  Future<String> uploadProfileImage(File image) {
+    return remoteDataSource.uploadProfileImage(image);
   }
 }

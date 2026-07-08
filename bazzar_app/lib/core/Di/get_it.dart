@@ -43,6 +43,7 @@ import 'package:bazzar_app/features/profile/domain/repositories/profile_reposito
 import 'package:bazzar_app/features/profile/domain/use_cases/get_profile_use_case.dart';
 import 'package:bazzar_app/features/profile/domain/use_cases/save_profile_use_case.dart';
 import 'package:bazzar_app/features/profile/domain/use_cases/update_profile_use_case.dart';
+import 'package:bazzar_app/features/profile/domain/use_cases/upload_profile_image_use_case.dart';
 import 'package:bazzar_app/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bazzar_app/features/search/data/data_sources/history_local_data_source.dart';
 import 'package:bazzar_app/features/search/data/data_sources/search_remote_data_source.dart';
@@ -190,6 +191,9 @@ Future<void> setupGetIt() async {
   sl.registerLazySingleton<UpdateProfileUseCase>(
     () => UpdateProfileUseCase(sl()),
   );
+  sl.registerLazySingleton<UploadProfileImageUseCase>(
+    () => UploadProfileImageUseCase(sl()),
+  );
 
-  sl.registerFactory<ProfileCubit>(() => ProfileCubit(sl(), sl(), sl()));
+  sl.registerFactory<ProfileCubit>(() => ProfileCubit(sl(), sl(), sl(), sl()));
 }

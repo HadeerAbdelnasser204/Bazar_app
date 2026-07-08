@@ -58,7 +58,10 @@ class FavoriteBookSection extends StatelessWidget {
           },
           icon: SvgPicture.asset(
             AppAssets.loveIcon,
-            colorFilter: const ColorFilter.mode(AppColors.red, BlendMode.srcIn),
+            colorFilter: const ColorFilter.mode(
+              AppColors.primary500,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       ],

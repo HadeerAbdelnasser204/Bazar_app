@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           BlocProvider(create: (context) => sl<VendorCubit>()..fetchVendors()),
 
           BlocProvider(
-            create: (context) => sl<AuthorCubit>()..fetchAuthors('All'),
+            create: (context) => sl<AuthorCubit>()..fetchAuthors("All"),
           ),
         ],
         child: HomeBody(),

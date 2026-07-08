@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bazzar_app/features/profile/data/models/profile_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ProfileRemoteDataSource {
   Future<void> saveProfile(ProfileModel profile) async {
@@ -30,5 +33,24 @@ class ProfileRemoteDataSource {
         .collection('users')
         .doc(uid)
         .update(profile.toJson());
+  }
+
+  Future<String> uploadProfileImage(File image) async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('profile_images')
+        .child('$uid.jpg');
+
+    await ref.putFile(image);
+
+    final url = await ref.getDownloadURL();
+
+    await FirebaseFirestore.instance.collection('users').doc(uid).update({
+      'imageUrl': url,
+    });
+
+    return url;
   }
 }
