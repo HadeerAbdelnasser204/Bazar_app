@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:bazzar_app/features/profile/data/models/profile_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileRemoteDataSource {
+  static const String _bucketName = 'profile-images';
+
   Future<void> saveProfile(ProfileModel profile) async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
 
@@ -36,16 +38,15 @@ class ProfileRemoteDataSource {
   }
 
   Future<String> uploadProfileImage(File image) async {
-    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final uid = FirebaseAuth.instance.currentUser?.uid;
 
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child('profile_images')
-        .child('$uid.jpg');
+    await Supabase.instance.client.storage
+        .from(_bucketName)
+        .upload('$uid.jpg', File(image.path));
 
-    await ref.putFile(image);
-
-    final url = await ref.getDownloadURL();
+    final url = Supabase.instance.client.storage
+        .from(_bucketName)
+        .getPublicUrl('$uid.jpg');
 
     await FirebaseFirestore.instance.collection('users').doc(uid).update({
       'imageUrl': url,

@@ -4,6 +4,7 @@ import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'firebase_options.dart';
 
@@ -11,6 +12,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Supabase.initialize(
+    url: 'https://hjwrvqvsmulnuevzouog.supabase.co',
+    anonKey: "sb_publishable_4ms9HX2Cft2nD-wwMImW5g_NQi4Qcnt",
+  );
 
   setupGetIt();
 

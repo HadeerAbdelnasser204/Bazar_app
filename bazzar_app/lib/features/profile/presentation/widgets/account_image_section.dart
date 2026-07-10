@@ -1,4 +1,5 @@
 import 'package:bazzar_app/core/theme/app_colors.dart';
+import 'package:bazzar_app/core/utils/app_assets.dart';
 import 'package:bazzar_app/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bazzar_app/features/profile/presentation/cubit/profile_state.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,9 @@ class AccountImageSection extends StatelessWidget {
                     right: 0,
                     child: CircleAvatar(
                       radius: 55,
-                      backgroundImage: AssetImage(profile.imageUrl),
+                      backgroundImage: profile.imageUrl.isEmpty
+                          ? const AssetImage(AppAssets.logo)
+                          : NetworkImage(profile.imageUrl) as ImageProvider,
                     ),
                   ),
                 ],
@@ -42,6 +45,7 @@ class AccountImageSection extends StatelessWidget {
               SizedBox(height: 60),
               TextButton(
                 onPressed: () async {
+                    print("Button Pressed");
                   context.read<ProfileCubit>().changeProfileImage();
                 },
                 child: Text(

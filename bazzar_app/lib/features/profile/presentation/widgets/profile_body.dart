@@ -37,7 +37,9 @@ class _ProfileBodyState extends State<ProfileBody> {
               ListTile(
                 leading: CircleAvatar(
                   radius: 30,
-                  backgroundImage: Image.asset(AppAssets.logo).image,
+                  backgroundImage: profile.imageUrl.isEmpty
+                      ? const AssetImage(AppAssets.logo)
+                      : NetworkImage(profile.imageUrl) as ImageProvider,
                 ),
                 title: Text(
                   profile.name,

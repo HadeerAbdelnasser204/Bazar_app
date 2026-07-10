@@ -56,6 +56,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> changeProfileImage() async {
+    print("changeProfileImage called");
+
     final picker = ImagePicker();
 
     final pickedImage = await picker.pickImage(
@@ -68,10 +70,17 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileLoading());
 
     try {
+      print("1- Image Selected");
+
       await uploadProfileImageUseCase(File(pickedImage.path));
 
+      print("2- Image Uploaded");
+
       await loadProfile();
+
+      print("3- Profile Loaded");
     } catch (e) {
+      print(e);
       emit(ProfileError(e.toString()));
     }
   }
