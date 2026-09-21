@@ -40,13 +40,19 @@ class ProfileRemoteDataSource {
   Future<String> uploadProfileImage(File image) async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
 
+    if (uid == null) {
+      throw Exception('User is not logged in');
+    }
+
+    final fileName = '$uid-${DateTime.now().millisecondsSinceEpoch}.jpg';
+
     await Supabase.instance.client.storage
         .from(_bucketName)
-        .upload('$uid.jpg', File(image.path));
+        .upload(fileName, image, fileOptions: const FileOptions(upsert: true));
 
     final url = Supabase.instance.client.storage
         .from(_bucketName)
-        .getPublicUrl('$uid.jpg');
+        .getPublicUrl(fileName);
 
     await FirebaseFirestore.instance.collection('users').doc(uid).update({
       'imageUrl': url,

@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthRemoteDataSource {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<UserCredential> signUp({
     required String email,
@@ -51,6 +53,20 @@ class AuthRemoteDataSource {
     }
 
     await user.reload();
+    final currentUser = _auth.currentUser;
+
+    if (currentUser == null) {
+      throw Exception("User not found");
+    }
+
+    if (currentUser.emailVerified) {
+      await _firestore.collection('users').doc(currentUser.uid).set({
+        'uid': currentUser.uid,
+        'email': currentUser.email ?? '',
+      });
+
+      return true;
+    }
 
     return _auth.currentUser!.emailVerified;
   }

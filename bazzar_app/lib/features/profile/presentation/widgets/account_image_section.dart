@@ -35,9 +35,20 @@ class AccountImageSection extends StatelessWidget {
                     right: 0,
                     child: CircleAvatar(
                       radius: 55,
-                      backgroundImage: profile.imageUrl.isEmpty
-                          ? const AssetImage(AppAssets.logo)
-                          : NetworkImage(profile.imageUrl) as ImageProvider,
+                      backgroundColor: AppColors.grey100,
+                      child: ClipOval(
+                        child: SizedBox(
+                          width: 110,
+                          height: 110,
+                          child: profile.imageUrl.isEmpty
+                              ? Image.asset(AppAssets.logo, fit: BoxFit.cover)
+                              : Image.network(
+                                  profile.imageUrl,
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.center,
+                                ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -45,7 +56,7 @@ class AccountImageSection extends StatelessWidget {
               SizedBox(height: 60),
               TextButton(
                 onPressed: () async {
-                    print("Button Pressed");
+                  print("Button Pressed");
                   context.read<ProfileCubit>().changeProfileImage();
                 },
                 child: Text(

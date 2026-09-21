@@ -31,15 +31,39 @@ class _ProfileBodyState extends State<ProfileBody> {
           }
 
           final profile = state.profile;
+
           return Column(
             children: [
               Divider(thickness: 1, color: AppColors.grey200),
               ListTile(
                 leading: CircleAvatar(
                   radius: 30,
-                  backgroundImage: profile.imageUrl.isEmpty
-                      ? const AssetImage(AppAssets.logo)
-                      : NetworkImage(profile.imageUrl) as ImageProvider,
+                  backgroundColor: Colors.grey.shade200,
+                  child: ClipOval(
+                    child: profile.imageUrl.isEmpty
+                        ? Image.asset(
+                            AppAssets.logo,
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.network(
+                            profile.imageUrl,
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              print("PROFILE IMAGE ERROR: $error");
+
+                              return Image.asset(
+                                AppAssets.logo,
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          ),
+                  ),
                 ),
                 title: Text(
                   profile.name,
@@ -74,8 +98,12 @@ class _ProfileBodyState extends State<ProfileBody> {
               ProfileSection(
                 sectionTitle: "My Account",
                 leadingIcon: Icons.person,
-                onPressed: () {
-                  context.push(AppRoutes.account);
+                onPressed: () async {
+                  final result = await context.push(AppRoutes.account);
+
+                  if (result == true && context.mounted) {
+                    context.read<ProfileCubit>().loadProfile();
+                  }
                 },
               ),
               AppSpacing.h15,

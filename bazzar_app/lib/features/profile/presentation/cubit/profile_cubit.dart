@@ -6,6 +6,7 @@ import 'package:bazzar_app/features/profile/domain/use_cases/save_profile_use_ca
 import 'package:bazzar_app/features/profile/domain/use_cases/update_profile_use_case.dart';
 import 'package:bazzar_app/features/profile/domain/use_cases/upload_profile_image_use_case.dart';
 import 'package:bazzar_app/features/profile/presentation/cubit/profile_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -27,6 +28,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
     try {
       final profile = await getProfileUseCase();
+
       emit(ProfileLoaded(profile));
     } catch (e) {
       emit(ProfileError(e.toString()));
@@ -67,20 +69,37 @@ class ProfileCubit extends Cubit<ProfileState> {
 
     if (pickedImage == null) return;
 
-    emit(ProfileLoading());
-
     try {
       print("1- Image Selected");
 
-      await uploadProfileImageUseCase(File(pickedImage.path));
+      final imageUrl = await uploadProfileImageUseCase(File(pickedImage.path));
 
       print("2- Image Uploaded");
+      print("Image URL: $imageUrl");
 
-      await loadProfile();
+      // Remove old image from Flutter's cache
+      await NetworkImage(imageUrl).evict();
 
-      print("3- Profile Loaded");
-    } catch (e) {
+      final currentState = state;
+
+      if (currentState is ProfileLoaded) {
+        final oldProfile = currentState.profile;
+
+        final updatedProfile = ProfileModel(
+          uid: oldProfile.uid,
+          name: oldProfile.name,
+          email: oldProfile.email,
+          phone: oldProfile.phone,
+          imageUrl: imageUrl,
+        );
+
+        emit(ProfileLoaded(updatedProfile));
+      }
+
+      print("3- Profile UI Updated");
+    } catch (e, stackTrace) {
       print(e);
+      print(stackTrace);
       emit(ProfileError(e.toString()));
     }
   }

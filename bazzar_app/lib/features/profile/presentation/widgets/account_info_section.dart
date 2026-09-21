@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:bazzar_app/core/constants/app_spacing.dart';
 import 'package:bazzar_app/core/theme/app_colors.dart';
 import 'package:bazzar_app/core/utils/app_assets.dart';
@@ -34,66 +32,78 @@ class _AccountInfoSectionState extends State<AccountInfoSection> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileCubit, ProfileState>(
-      listener: (context, state) {
-        if (state is ProfileLoaded) {
-          nameController.text = state.profile.name;
-          emailController.text = state.profile.email;
-          phoneController.text = state.profile.phone;
-        }
-      },
+    return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
+        // Loading فقط للجزء الخاص بالبيانات
         if (state is ProfileLoading) {
           return const Center(
             child: CircularProgressIndicator(color: AppColors.grey500),
           );
         }
 
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              AccountTextField(label: "Name", controller: nameController),
-              AppSpacing.h15,
-              AccountTextField(label: "Email", controller: emailController),
-              AppSpacing.h15,
-              AccountTextField(
-                prefixIcon: AppAssets.phoneIcon,
-                label: "Phone Number",
-                controller: phoneController,
-              ),
-              AppSpacing.h15,
+        if (state is ProfileLoaded) {
+          // هنا بنجيب البيانات مباشرة من الـ state
+          // بدل ما نعتمد على listener
+          nameController.text = state.profile.name;
+          emailController.text = state.profile.email;
+          phoneController.text = state.profile.phone;
 
-              AppSpacing.h40,
-              CustomeButton(
-                text: "Save Changes",
-                onPressed: () async {
-                  final profile = ProfileModel(
-                    uid: state is ProfileLoaded ? state.profile.uid : '',
-                    name: nameController.text,
-                    email: emailController.text,
-                    phone: phoneController.text,
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Column(
+              children: [
+                AccountTextField(label: "Name", controller: nameController),
 
-                    imageUrl: state is ProfileLoaded
-                        ? state.profile.imageUrl
-                        : '',
-                  );
+                AppSpacing.h15,
 
-                  await context.read<ProfileCubit>().updateProfile(profile);
-                  SnackBarHelper.show(
-                    context: context,
-                    message: "Profile updated successfully!",
-                    backgroundColor: AppColors.primary500,
-                    icon: Icons.check_circle_outline,
-                  );
-                },
-                buttonColor: AppColors.primary500,
-                textColor: Colors.white,
-                borderSide: BorderSide.none,
-              ),
-            ],
-          ),
-        );
+                AccountTextField(label: "Email", controller: emailController),
+
+                AppSpacing.h15,
+
+                AccountTextField(
+                  prefixIcon: AppAssets.phoneIcon,
+                  label: "Phone Number",
+                  controller: phoneController,
+                ),
+
+                AppSpacing.h15,
+                AppSpacing.h40,
+
+                CustomeButton(
+                  text: "Save Changes",
+                  onPressed: () async {
+                    final profile = ProfileModel(
+                      uid: state.profile.uid,
+                      name: nameController.text,
+                      email: emailController.text,
+                      phone: phoneController.text,
+                      imageUrl: state.profile.imageUrl,
+                    );
+
+                    await context.read<ProfileCubit>().updateProfile(profile);
+
+                    SnackBarHelper.show(
+                      // ignore: use_build_context_synchronously
+                      context: context,
+                      message: "Profile updated successfully!",
+                      backgroundColor: AppColors.primary500,
+                      icon: Icons.check_circle_outline,
+                    );
+                  },
+                  buttonColor: AppColors.primary500,
+                  textColor: Colors.white,
+                  borderSide: BorderSide.none,
+                ),
+              ],
+            ),
+          );
+        }
+
+        if (state is ProfileError) {
+          return Center(child: Text(state.message));
+        }
+
+        return const SizedBox.shrink();
       },
     );
   }

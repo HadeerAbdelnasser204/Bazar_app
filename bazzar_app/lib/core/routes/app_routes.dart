@@ -220,13 +220,23 @@ final GoRouter router = GoRouter(
       path: AppRoutes.searchScreen,
       builder: (context, state) => const SearchScreen(),
     ),
-    GoRoute(
-      path: AppRoutes.profileScreen,
-      builder: (context, state) => const ProfileScreen(),
-    ),
-    GoRoute(
-      path: AppRoutes.account,
-      builder: (context, state) => const AccountScreen(),
+    ShellRoute(
+      builder: (context, state, child) {
+        return BlocProvider(
+          create: (_) => sl<ProfileCubit>()..loadProfile(),
+          child: child,
+        );
+      },
+      routes: [
+        GoRoute(
+          path: AppRoutes.profileScreen,
+          builder: (context, state) => const ProfileScreen(),
+        ),
+        GoRoute(
+          path: AppRoutes.account,
+          builder: (context, state) => const AccountScreen(),
+        ),
+      ],
     ),
     GoRoute(
       path: AppRoutes.favorites,
